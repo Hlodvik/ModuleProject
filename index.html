@@ -59,26 +59,16 @@
             </div>
         </form>
 
-        <!-- Navbar dropdown -->
-        <div class="dropdown ms-auto">
-            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="assets/default-picture.png" alt="Profile Picture" class="rounded-circle"
-                    style="height: 35px; width: 35px; object-fit: cover;">
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
-                <li><a class="dropdown-item text-white" href="profile.html"><i class="bi bi-person me-2"></i> View
-                        Profile</a></li>
-                <li><a class="dropdown-item text-white" href="settings.html"><i class="bi bi-gear me-2"></i>
-                        Settings</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item text-danger" href="#" id="logoutButton">
-                        <i class="bi bi-box-arrow-right me-2"></i> Logout
-                    </a></li>
-            </ul>
-        </div>
+        <button class="btn btn-warning rounded-pill px-4 py-2 text-white mx-2"
+            style="background-color: #ff4500; border: none;" data-bs-toggle="modal" data-bs-target="#loginModal">
+            Log In
+        </button>
+
+        <button class="btn btn-warning rounded-pill px-4 py-2 text-white mx-2"
+            style="background-color: #ff4500; border: none;" data-bs-toggle="modal" data-bs-target="#signupModal">
+            <i class="bi bi-box-arrow-in-right me-2"></i> Sign Up
+        </button>
+
     </nav>
 
 
@@ -105,16 +95,11 @@
             <!-- Main Content -->
             <main class="col-md-9 col-lg-10 px-md-4">
                 <div class="container mt-4 cn">
-                    <section class="hero-section text-white text-center d-flex py-5">
+                    <section class="hero-section text-white d-flex py-5">
                         <div class="container hc">
                             <h1 class="display-3 fw-bold">Welcome to Readit</h1>
-                            <p class="lead text-secondary">The best place to discuss, explore, and share what matters to
+                            <p class="lead">The best place to discuss, explore, and share what matters to
                                 you.</p>
-                            <div class="mt-4 d-flex justify-content-center gap-3">
-                                <button class="btn btn-warning rounded-pill px-4 py-2 text-white"
-                                    style="background-color: #ff4500; border: none;">Get Started</button>
-                                <button class="btn btn-outline-light rounded-pill px-4 py-2">Learn More</button>
-                            </div>
                         </div>
                     </section>
                     <div class="container mt-4">
