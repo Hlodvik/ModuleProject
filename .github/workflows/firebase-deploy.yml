@@ -1,4 +1,4 @@
-name: Deploy to Firebase Hosting using Workload Identity Federation
+name: Deploy to Firebase 
 
 on:
   push:
