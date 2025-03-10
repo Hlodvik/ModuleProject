@@ -3,7 +3,9 @@ name: Deploy to Firebase Hosting using Workload Identity Federation
 on:
   push:
     branches:
+
       - main   
+
 
 permissions:
   id-token: write
@@ -21,7 +23,9 @@ jobs:
       - name: Setup Google Cloud CLI
         uses: google-github-actions/auth@v2
         with:
+
           workload_identity_provider: "projects/348958277147/locations/global/workloadIdentityPools/github-pool/providers/github-provider"
+
           service_account: "firebase-deploy@projectsignupapi.iam.gserviceaccount.com"
 
       - name: Install Firebase CLI
