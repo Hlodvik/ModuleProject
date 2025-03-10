@@ -55,8 +55,9 @@
                     <i class="bi bi-search"></i>
                 </span>
                 <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
-                    placeholder="Search Readit" aria-label="Search" style="color: white; caret-color: white;">
+                    placeholder="Search Users" aria-label="Search" id="userSearchInput">
             </div>
+            <div id="searchResults" class="dropdown-menu bg-dark text-white"></div> <!-- Dropdown for results -->
         </form>
 
         <button class="btn btn-warning rounded-pill px-4 py-2 text-white mx-2"
@@ -139,10 +140,12 @@
                                 match</small>
                         </div>
                         <button type="button" class="btn w-100 custom-btn-orange" id="signupButton">Sign Up</button>
-                        
+
                         <p class="text-center text-muted">Or sign up with</p>
-                        <button class="btn w-100 custom-btn-dark mt-2" id="googleSignupButton"><i class="bi bi-google me-2"></i> Google</button>
-                        <button class="btn w-100 custom-btn-dark mt-2" id="appleSignupButton"><i class="bi bi-apple me-2"></i> Apple</button>
+                        <button class="btn w-100 custom-btn-dark mt-2" id="googleSignupButton"><i
+                                class="bi bi-google me-2"></i> Google</button>
+                        <button class="btn w-100 custom-btn-dark mt-2" id="appleSignupButton"><i
+                                class="bi bi-apple me-2"></i> Apple</button>
                 </div>
             </div>
         </div>
@@ -169,19 +172,19 @@
                         </div>
                         <small id="loginError" class="text-danger d-none">Invalid email or
                             password.</small>
-                            <button id="loginButton" type="button" class="btn w-100 custom-btn-orange">
-                                Log In
-                            </button>
-                            
-                        </form>
-                        <hr>
-                        <p class="text-center text-muted">Or log in with</p>
-                        <button id="googleLoginButton" class="btn w-100 custom-btn-dark mt-2">
-                            <i class="bi bi-google me-2"></i> Google
+                        <button id="loginButton" type="button" class="btn w-100 custom-btn-orange">
+                            Log In
                         </button>
-                        <button id="appleLoginButton" class="btn w-100 custom-btn-dark mt-2">
-                            <i class="bi bi-apple me-2"></i> Apple
-                        </button>
+
+                    </form>
+                    <hr>
+                    <p class="text-center text-muted">Or log in with</p>
+                    <button id="googleLoginButton" class="btn w-100 custom-btn-dark mt-2">
+                        <i class="bi bi-google me-2"></i> Google
+                    </button>
+                    <button id="appleLoginButton" class="btn w-100 custom-btn-dark mt-2">
+                        <i class="bi bi-apple me-2"></i> Apple
+                    </button>
                 </div>
             </div>
         </div>
