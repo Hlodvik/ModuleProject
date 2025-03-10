@@ -5,17 +5,14 @@ import { doc, getDoc, collection, query, where, getDocs } from "firebase/firesto
 // Check if we are on a user profile URL or the logged-in user's profile
 document.addEventListener("DOMContentLoaded", async () => {
     const pathSegments = window.location.pathname.split("/");
-    const lastSegment = pathSegments[pathSegments.length - 1];
 
-    if (lastSegment.startsWith("u/")) {
-        // Viewing another user's profile
-        const username = lastSegment.replace("u/", "");
+    if (pathSegments.length > 2 && pathSegments[1] === "u") {
+        const username = pathSegments[2]; // Extract "username"
         await loadUserProfile(username);
     } else {
-        // Viewing own profile
+        // Load logged-in user's profile
         onAuthStateChanged(auth, async (user) => {
             if (!user) return;
-
             const userDocRef = doc(db, "users", user.uid);
             const userDoc = await getDoc(userDocRef);
 

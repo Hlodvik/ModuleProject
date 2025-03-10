@@ -19,7 +19,7 @@ async function login() {
     //on succesful login, be redirected to home page
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "home.html";
+        window.location.href = "html/home.html";
     } catch (error) {//give the function something to do if failure
         console.error("Login failed:", error.message);
         alert("Invalid email or password.");
