@@ -1,0 +1,103 @@
+[debug] [2025-03-09T23:22:18.067Z] ----------------------------------------------------------------------
+[debug] [2025-03-09T23:22:18.069Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Lctiv\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2025-03-09T23:22:18.069Z] CLI Version:   13.33.0
+[debug] [2025-03-09T23:22:18.069Z] Platform:      win32
+[debug] [2025-03-09T23:22:18.069Z] Node Version:  v22.14.0
+[debug] [2025-03-09T23:22:18.069Z] Time:          Sun Mar 09 2025 17:22:18 GMT-0600 (Mountain Daylight Time)
+[debug] [2025-03-09T23:22:18.069Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-03-09T23:22:18.073Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-09T23:22:18.073Z] > authorizing via signed-in user (lewistathamiv@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Lctiv\Bootstrap
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2025-03-09T23:23:21.816Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:21.816Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:21.817Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects pageSize=100
+[debug] [2025-03-09T23:23:22.307Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects 200
+[debug] [2025-03-09T23:23:22.307Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects [omitted]
+[info] i  Using project projectsignupapi (projectSignUpAPI) 
+[info] 
+=== Firestore Setup
+[debug] [2025-03-09T23:23:33.332Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:33.332Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:33.332Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/projectsignupapi/services/firestore.googleapis.com [none]
+[debug] [2025-03-09T23:23:33.332Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/projectsignupapi/services/firestore.googleapis.com x-goog-quota-user=projects/projectsignupapi
+[debug] [2025-03-09T23:23:33.714Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/projectsignupapi/services/firestore.googleapis.com 200
+[debug] [2025-03-09T23:23:33.714Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/projectsignupapi/services/firestore.googleapis.com [omitted]
+[debug] [2025-03-09T23:23:33.714Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:33.714Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:33.714Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default) [none]
+[debug] [2025-03-09T23:23:34.083Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default) 200
+[debug] [2025-03-09T23:23:34.083Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default) {"name":"projects/projectsignupapi/databases/(default)","uid":"054c8807-c99a-42c0-a3bc-1677139fb26c","createTime":"2025-03-07T03:43:59.153153Z","updateTime":"2025-03-07T03:43:59.153153Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2025-03-09T22:23:33.794959Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"etag":"ILKLzKeS/osDMPbkstnf+IsD"}
+[debug] [2025-03-09T23:23:34.083Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-03-09T23:23:34.083Z] database_type: FIRESTORE_NATIVE
+[debug] [2025-03-09T23:23:34.084Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-03-09T23:23:34.084Z] > authorizing via signed-in user (lewistathamiv@gmail.com)
+[debug] [2025-03-09T23:23:34.084Z] [iam] checking project projectsignupapi for permissions ["firebase.projects.get"]
+[debug] [2025-03-09T23:23:34.085Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:34.085Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:34.085Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/projectsignupapi:testIamPermissions [none]
+[debug] [2025-03-09T23:23:34.085Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/projectsignupapi:testIamPermissions x-goog-quota-user=projects/projectsignupapi
+[debug] [2025-03-09T23:23:34.085Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/projectsignupapi:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-03-09T23:23:34.368Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/projectsignupapi:testIamPermissions 200
+[debug] [2025-03-09T23:23:34.368Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/projectsignupapi:testIamPermissions {"permissions":["firebase.projects.get"]}
+[info] 
+[info] Firestore Security Rules allow you to define how and when to allow
+[info] requests. You can keep these rules in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-03-09T23:23:52.812Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:52.813Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:52.813Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/releases pageSize=10&pageToken=
+[debug] [2025-03-09T23:23:53.136Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/releases 200
+[debug] [2025-03-09T23:23:53.136Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/releases {"releases":[{"name":"projects/projectsignupapi/releases/cloud.firestore","rulesetName":"projects/projectsignupapi/rulesets/395e3757-53b0-4180-9baf-d3b34e27e211","createTime":"2025-03-07T03:44:00.847044Z","updateTime":"2025-03-07T03:48:13.824514Z"}]}
+[debug] [2025-03-09T23:23:53.136Z] Found ruleset: projects/projectsignupapi/rulesets/395e3757-53b0-4180-9baf-d3b34e27e211
+[debug] [2025-03-09T23:23:53.137Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:53.137Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:53.137Z] >>> [apiv2][query] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/rulesets/395e3757-53b0-4180-9baf-d3b34e27e211 [none]
+[debug] [2025-03-09T23:23:53.283Z] <<< [apiv2][status] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/rulesets/395e3757-53b0-4180-9baf-d3b34e27e211 200
+[debug] [2025-03-09T23:23:53.283Z] <<< [apiv2][body] GET https://firebaserules.googleapis.com/v1/projects/projectsignupapi/rulesets/395e3757-53b0-4180-9baf-d3b34e27e211 [omitted]
+[info] 
+[info] Firestore indexes allow you to perform complex queries while
+[info] maintaining performance that scales with the size of the result
+[info] set. You can keep index definitions in your project directory
+[info] and publish them with firebase deploy.
+[info] 
+[debug] [2025-03-09T23:23:57.893Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:57.894Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:57.894Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:57.894Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:57.894Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/indexes [none]
+[debug] [2025-03-09T23:23:57.896Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* [none]
+[debug] [2025-03-09T23:23:58.200Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/indexes 200
+[debug] [2025-03-09T23:23:58.200Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/indexes {}
+[debug] [2025-03-09T23:23:58.203Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* 200
+[debug] [2025-03-09T23:23:58.203Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/projectsignupapi/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false OR ttlConfig:* {"fields":[{"name":"projects/projectsignupapi/databases/(default)/collectionGroups/__default__/fields/*","indexConfig":{"indexes":[{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"ASCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","order":"DESCENDING"}],"state":"READY"},{"queryScope":"COLLECTION","fields":[{"fieldPath":"*","arrayConfig":"CONTAINS"}],"state":"READY"}]}}]}
+[info] 
+=== Hosting Setup
+[debug] [2025-03-09T23:23:58.206Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:58.206Z] Checked if tokens are valid: true, expires at: 1741565684488
+[debug] [2025-03-09T23:23:58.206Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/projectsignupapi [none]
+[debug] [2025-03-09T23:23:58.671Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/projectsignupapi 200
+[debug] [2025-03-09T23:23:58.671Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/projectsignupapi {"projectId":"projectsignupapi","projectNumber":"348958277147","displayName":"projectSignUpAPI","name":"projects/projectsignupapi","resources":{"hostingSite":"projectsignupapi"},"state":"ACTIVE","etag":"1_c783e579-1bd8-4bc9-966c-0cc57016d24d"}
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

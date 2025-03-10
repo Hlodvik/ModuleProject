@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "dependencies": {
+    "firebase": "^11.4.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "npx live-server dist"
+  },
+  "devDependencies": {
+    "vite": "^6.2.1"
+  }
+}
