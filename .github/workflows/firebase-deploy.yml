@@ -3,7 +3,7 @@ name: Deploy to Firebase Hosting using Workload Identity Federation
 on:
   push:
     branches:
-      - main  # Adjust if your default branch is different
+      - main  
 
 permissions:
   id-token: write
