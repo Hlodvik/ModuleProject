@@ -138,17 +138,11 @@
                             <small id="passwordError" class="text-danger d-none">Passwords do not
                                 match</small>
                         </div>
-                        <button type="button" class="btn w-100 custom-btn-orange" onclick="signup()">Sign
-                            Up</button>
-                    </form>
-                    <hr>
-                    <p class="text-center text-muted">Or sign up with</p>
-                    <button class="btn w-100 custom-btn-dark mt-2" onclick="signupGoogle()">
-                        <i class="bi bi-google me-2"></i> Sign Up with Google
-                    </button>
-                    <button class="btn w-100 custom-btn-dark mt-2" onclick="signupApple()">
-                        <i class="bi bi-apple me-2"></i> Sign Up with Apple
-                    </button>
+                        <button type="button" class="btn w-100 custom-btn-orange" id="signupButton">Sign Up</button>
+                        
+                        <p class="text-center text-muted">Or sign up with</p>
+                        <button class="btn w-100 custom-btn-dark mt-2" id="googleSignupButton"><i class="bi bi-google me-2"></i> Sign Up with Google</button>
+                        <button class="btn w-100 custom-btn-dark mt-2" id="appleSignupButton"><i class="bi bi-apple me-2"></i> Sign Up with Apple</button>
                 </div>
             </div>
         </div>
@@ -175,17 +169,19 @@
                         </div>
                         <small id="loginError" class="text-danger d-none">Invalid email or
                             password.</small>
-                        <button type="button" class="btn w-100 custom-btn-orange" onclick="login()">Log
-                            In</button>
-                    </form>
-                    <hr>
-                    <p class="text-center text-muted">Or log in with</p>
-                    <button class="btn w-100 custom-btn-dark mt-2" onclick="signupGoogle()">
-                        <i class="bi bi-google me-2"></i> Log In with Google
-                    </button>
-                    <button class="btn w-100 custom-btn-dark mt-2" onclick="signupApple()">
-                        <i class="bi bi-apple me-2"></i> Log In with Apple
-                    </button>
+                            <button id="loginButton" type="button" class="btn w-100 custom-btn-orange">
+                                Log In
+                            </button>
+                            
+                        </form>
+                        <hr>
+                        <p class="text-center text-muted">Or log in with</p>
+                        <button id="googleLoginButton" class="btn w-100 custom-btn-dark mt-2">
+                            <i class="bi bi-google me-2"></i> Google
+                        </button>
+                        <button id="appleLoginButton" class="btn w-100 custom-btn-dark mt-2">
+                            <i class="bi bi-apple me-2"></i> Apple
+                        </button>
                 </div>
             </div>
         </div>

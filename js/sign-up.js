@@ -1,4 +1,4 @@
-import {createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthProvider, onAuthStateChanged, } from "firebase/auth";
+import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthProvider } from "firebase/auth";
 import {auth} from "./auth.js";
 //all of the signing up functions that are used only in index.html
 
@@ -52,7 +52,9 @@ async function signupApple() {
 }
 
 
-//since these js files are ES modules, use the window object to make these globally accessible 
-window.signup = signup;
-window.signupGoogle = signupGoogle;
-window.signupApple = signupApple;
+document.addEventListener("DOMContentLoaded", function () {
+    // Signup Buttons
+    document.querySelector("#signupButton")?.addEventListener("click", signup);
+    document.querySelector("#googleSignupButton")?.addEventListener("click", signupWithGoogle);
+    document.querySelector("#appleSignupButton")?.addEventListener("click", signupWithApple);
+});
