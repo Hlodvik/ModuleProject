@@ -182,16 +182,18 @@
               <input type="password" class="form-control" id="loginPassword" required placeholder="Enter your password">
             </div>
             <small id="loginError" class="text-danger d-none">Invalid email or password.</small>
-            <button type="button" class="btn w-100 custom-btn-orange" onclick="login()">Log In</button>
+            <button type="button" class="btn w-100 custom-btn-orange" id="loginButton">Log In</button>
+
           </form>
           <hr>
           <p class="text-center text-muted">Or log in with</p>
-          <button class="btn w-100 custom-btn-dark mt-2" onclick="signupGoogle()">
+          <button class="btn w-100 custom-btn-dark mt-2" id="googleLoginButton">
             <i class="bi bi-google me-2"></i> Log In with Google
           </button>
-          <button class="btn w-100 custom-btn-dark mt-2" onclick="signupApple()">
+          <button class="btn w-100 custom-btn-dark mt-2" id="appleLoginButton">
             <i class="bi bi-apple me-2"></i> Log In with Apple
           </button>
+          
         </div>
       </div>
     </div>

@@ -25,6 +25,7 @@ async function login() {
         alert("Invalid email or password.");
     }
 }
+document.getElementById("loginButton").addEventListener("click", login);
 
 async function loginWithGoogle() {
     try {
@@ -46,6 +47,8 @@ async function loginWithApple() {
         console.error("Apple login failed:", error.message);
     }
 }
+document.getElementById("googleLoginButton").addEventListener("click", loginWithGoogle);
+document.getElementById("appleLoginButton").addEventListener("click", loginWithApple);
 
 
 function logout() {
