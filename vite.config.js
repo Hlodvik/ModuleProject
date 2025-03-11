@@ -11,7 +11,10 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"), // Define entry points manually
         home: resolve(__dirname, "html/home.html"),
         profile: resolve(__dirname, "html/profile.html"),
-        settings: resolve(__dirname, "html/settings.html")
+        settings: resolve(__dirname, "html/settings.html"),
+        settings: resolve(__dirname, "html/admin-dashboard.html"),
+        settings: resolve(__dirname, "html/community.html")
+
       },
       output: {
         entryFileNames: "assets/[name].js",
