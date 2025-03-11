@@ -1,20 +1,21 @@
- 
 import { auth, db } from "./auth.js";
 import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
 
 document.addEventListener("DOMContentLoaded", async () => {
     if (!window.location.pathname.startsWith("/u/")) return;
+
     const pathSegments = window.location.pathname.split("/");
     const username = pathSegments[2]; // Extract "testuser" from /u/testuser
-    const profilePic = document.getElementById("profilePic");
-    
+
     if (!username) {
         console.error("No username found in the URL.");
         return;
     }
 
     // Check if profile picture is cached
+    const profilePic = document.getElementById("profilePic");
     const cachedProfilePic = localStorage.getItem(`profilePic_${username}`);
+
     if (profilePic && cachedProfilePic) {
         profilePic.src = cachedProfilePic; // Load cached profile picture immediately
     }
@@ -51,10 +52,13 @@ function updateProfileUI(userData) {
     setProfileLink("instagram", userData.instagram);
     setProfileLink("x", userData.twitter);
 
-    // Profile picture caching
-    const profilePic = userData.profilePic || "../assets/default-picture.png";
-    document.getElementById("profilePic").src = profilePic;
-    localStorage.setItem(`profilePic_${userData.username}`, profilePic); // Cache profile pic
+    // Update profile picture
+    const profilePic = document.getElementById("profilePic");
+    if (profilePic) {
+        const profilePicUrl = userData.profilePic || "../assets/default-picture.png";
+        profilePic.src = profilePicUrl;
+        localStorage.setItem(`profilePic_${userData.username}`, profilePicUrl); // Cache profile pic
+    }
 }
 
 // Utility function for setting profile links
@@ -70,4 +74,3 @@ function setProfileLink(id, url) {
         }
     }
 }
-
