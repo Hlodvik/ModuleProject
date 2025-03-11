@@ -28,4 +28,31 @@ if (window.location.hostname === "localhost") {
     connectStorageEmulator(storage, "127.0.0.1", 9199);
 }
 
+ 
+
+async function testAddCommunity() {
+    const user = auth.currentUser;
+    if (!user) {
+        console.error("Not logged in");
+        return;
+    }
+
+    try {
+        const docRef = await addDoc(collection(db, "communities"), {
+            name: "Test Community",
+            subdomain: "testcommunity",
+            bio: "Test",
+            createdBy: user.uid,
+            admins: [user.uid],
+            members: [user.uid],
+            imageUrl: "",
+            bannerUrl: "",
+        });
+        console.log("Document written with ID:", docRef.id);
+    } catch (error) {
+        console.error("Error adding document:", error);
+    }
+}
+
+testAddCommunity();
 
