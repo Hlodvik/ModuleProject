@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { getAuth, connectAuthEmulator, onAuthStateChanged } from "firebase/auth";
 import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 import { getStorage, connectStorageEmulator } from "firebase/storage";
 
@@ -29,9 +29,7 @@ if (window.location.hostname === "localhost") {
 }
 
  
-
-async function testAddCommunity() {
-    const user = auth.currentUser;
+onAuthStateChanged(auth, async (user) => {
     if (!user) {
         console.error("Not logged in");
         return;
@@ -52,7 +50,4 @@ async function testAddCommunity() {
     } catch (error) {
         console.error("Error adding document:", error);
     }
-}
-
-testAddCommunity();
-
+});
