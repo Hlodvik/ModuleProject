@@ -40,10 +40,17 @@ a {
     margin-bottom: 5vh;
 }
 
-.user-activity{
-    border:1px;
+
+/* Ensures User Activity Borders are Visible */
+.user-activity {
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
 }
 
+.copp{
+    z-index: 50;
+}
 .sidebar {
     position: fixed;
     padding-top: 2rem;
@@ -239,9 +246,7 @@ h1 {
     /* Light grey underline */
     padding-bottom: 10px;
     margin-bottom: 20px;
-}
-
-
+} 
 
 /* Form input fields hover and focus effect */
 .form-control:focus {
@@ -249,4 +254,19 @@ h1 {
     /* Light blue border on focus */
     background-color: #343a40;
     color: white;
+}
+ 
+ /* Prevent text selection during drag */
+.draggable-media {
+    user-select: none;
+    pointer-events: none; /* Prevents accidental selection while moving */
+}
+
+/* Disable selection for everything inside editor while dragging */
+.editor-dragging * {
+    user-select: none;
+}
+
+.navsec{
+    margin-top: 5vh;
 }

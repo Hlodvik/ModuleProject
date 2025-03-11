@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/readiticon.svg">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link href="../css/style.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <!-- <script type="module" src="../js/main.js"></script> -->
+
+</head>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark px-3 border-bottom border-secondary w-100">
+        <a class="navbar-brand d-flex align-items-center" href="home.html">
+            <img src="../assets/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
+            <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
+                style="text-decoration:none">
+                <g style="fill: white">
+                    <!-- r -->
+                    <path
+                        d="M66,96c0-29,20-52,50-52s47,20,47,48c0,5-1,10-2,14h-68c3,11,12,19,26,19c8,0,19-3,24-7l9,22c-9,6-22,9-33,9c-32,0-54-21-54-52Zm27-9h43c0-13-9-20-20-20c-12,0-21,8-23,20Z">
+                    </path>
+                    <!-- e -->
+                    <path
+                        d="M72,46l-12,29c-1-1-5-2-9-2s-7,1-10,2c-6,3-11,10-11,19v52H-1V45h29v14h1c7-9,17-16,31-16c5,0,10,1,12,2Z">
+                    </path>
+                    <!-- a -->
+                    <path
+                        d="M246,43v12h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V43h-30Zm1,80h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z" />
+                    <!-- d -->
+                    <path
+                        d="M360,1v54h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V1h-30Zm1,121h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z">
+                    </path>
+                    <!-- i -->
+                    <path d="M420,0c10,0,18,8,18,18s-8,18-18,18s-18-8-18-18S410,0,420,0Zm15,148h-30V45h30v103Z">
+                    </path>
+                    <!-- t -->
+                    <path d="M498,45h22v25h-25v76h-30v-76h-22v-25h22v-28h30v28Z"></path>
+                </g>
+            </svg> </span>
+        </a>
+        <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
+            <div class="input-group">
+                <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
+                    placeholder="Search Users" aria-label="Search" id="userSearchInput">
+            </div>
+            <div id="searchResults" class="dropdown-menu bg-dark text-white"></div> <!-- Dropdown for results -->
+        </form>
+
+        <!-- Navbar dropdown -->
+        <div class="dropdown ms-auto">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../assets/default-picture.png" alt="Profile Picture" class="rounded-circle"
+                    style="height: 35px; width: 35px; object-fit: cover;">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
+                <li><a class="dropdown-item text-white" href="profile.html"><i class="bi bi-person me-2"></i> View
+                        Profile</a></li>
+                <li><a class="dropdown-item text-white" href="settings.html"><i class="bi bi-gear me-2"></i>
+                        Settings</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger" href="#" id="logoutButton">
+                        <i class="bi bi-box-arrow-right me-2"></i> Logout
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar Wrapper -->
+            <div class=" col-md-3 col-lg-2 vh-100">
+                <div class="sidebar">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="home.html">
+                                <i class="bi bi-house-door me-2"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="popular.html">
+                                <i class="bi bi-fire me-2"></i> Popular
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="explore.html">
+                                <i class="bi bi-compass me-2"></i> Explore
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <main class="col-md-7 px-md-4">
+                <!-- Community Banner -->
+                <div class="position-relative">
+                    <img src="../assets/default-banner.jpg" class="w-100"
+                        style="height: 200px; object-fit: cover; margin-top: 2rem;">
+                    <img src="../assets/vance.jpg" class="position-absolute copp"
+                        style="bottom: -30px; left: 20px; height: 80px; width: 80px; border-radius: 50%; border: 3px solid white;">
+                </div>
+
+                <!-- Community Name -->
+                <div class="mt-4">
+                    <h2 id="communityName" class="text-white">Community Name</h2>
+                </div>
+
+                <!-- Posts Section -->
+                <div id="communityPosts" class="mt-3">
+                    <!-- Posts will be dynamically added here -->
+                </div>
+            </main>
+
+            <!-- Right-Side Menu -->
+            <aside class="col-md-3" style="margin-top:3em;">
+                <div class="card bg-dark text-white border-secondary p-3">
+                    <img src="../assets/default-pic.jpg" class="rounded-circle mx-auto d-block"
+                        style="height: 80px; width: 80px;">
+                    <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-sm btn-primary">Join Community</button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPostModal">
+                            Create Post
+                        </button>
+                    </div>
+                    <hr>
+                    <p id="communityBio" class="text-secondary">Community bio goes here...</p>
+                    <h6>Admins</h6>
+                    <ul id="communityAdmins" class="list-unstyled text-secondary">
+                        <li> </li>
+                    </ul>
+                    <button class="btn btn-sm btn-outline-light w-100">Message Admin</button>
+                </div>
+            </aside>
+        </div>
+    </div>
+    <!-- Create Post Modal -->
+    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Post Title -->
+                    <input type="text" id="postTitle" class="form-control bg-secondary text-white mb-3"
+                        placeholder="Title" maxlength="300">
+
+                    <!-- Toolbar for text editing -->
+                    <!-- Formatting Buttons -->
+                    <div class="d-flex gap-2 mt-2">
+                        <button class="btn btn-outline-light btn-sm" id="boldBtn"><b>B</b></button>
+                        <button class="btn btn-outline-light btn-sm" id="italicBtn"><i>I</i></button>
+
+                        <!-- Font Size Dropdown -->
+                        <div class="dropdown">
+                            <button class="btn btn-outline-light btn-sm dropdown-toggle" id="fontSizeBtn"
+                                data-bs-toggle="dropdown">
+                                <i class="bi bi-type"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <!-- Generate font sizes dynamically with JS -->
+                            </ul>
+                        </div>
+                        <button class="btn btn-outline-light btn-sm" id="addMediaBtn"><i
+                                class="bi bi-image"></i></button>
+
+                    </div>
+
+                    <!-- Post Body -->
+                    <!-- Rich text editor -->
+                    <div id="postBody" class="form-control bg-secondary text-white p-2" contenteditable="true"
+                        style="min-height: 150px; overflow-y: auto;">
+                    </div>
+
+
+
+                    <!-- Post Button -->
+                    <div class="d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-primary" id="submitPost">Post</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Media Insert Modal -->
+    <div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="mediaModalLabel">Insert Media</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="file" id="fileInput" class="form-control mb-2">
+                    <input type="text" id="urlInput" class="form-control mb-2" placeholder="Paste image/video URL">
+                    <div id="mediaPreview" class="text-center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="insertMediaBtn" disabled>Insert</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const editor = document.getElementById("postBody");
+            const boldBtn = document.getElementById("boldBtn");
+            const italicBtn = document.getElementById("italicBtn");
+            const fontSizeMenu = document.querySelector("#fontSizeBtn + .dropdown-menu");
+            const mediaModal = new bootstrap.Modal(document.getElementById("mediaModal"));
+            const fileInput = document.getElementById("fileInput");
+            const urlInput = document.getElementById("urlInput");
+            const mediaPreview = document.getElementById("mediaPreview");
+            const insertMediaBtn = document.getElementById("insertMediaBtn");
+            let undoStack = [];
+            let redoStack = [];
+            let isTyping = false;
+            let lastSelection = null;
+
+            function applyFormatting(tag) {
+                const selection = window.getSelection();
+                if (!selection.rangeCount) return;
+
+                const range = selection.getRangeAt(0);
+                const selectedText = range.extractContents();
+                const newElement = document.createElement(tag);
+                newElement.appendChild(selectedText);
+                range.deleteContents();
+                range.insertNode(newElement);
+
+                range.setStartAfter(newElement);
+                range.collapse(true);
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+                editor.focus();
+            }
+
+            function saveState() {
+                if (!isTyping) {
+                    undoStack.push(editor.innerHTML);
+                    if (undoStack.length > 50) undoStack.shift();
+                    redoStack.length = 0;
+                }
+            }
+
+            function undo() {
+                if (undoStack.length > 0) {
+                    redoStack.push(editor.innerHTML);
+                    editor.innerHTML = undoStack.pop();
+                    placeCursorAtEnd(editor);
+                }
+            }
+
+            function redo() {
+                if (redoStack.length > 0) {
+                    undoStack.push(editor.innerHTML);
+                    editor.innerHTML = redoStack.pop();
+                    placeCursorAtEnd(editor);
+                }
+            }
+
+            function placeCursorAtEnd(element) {
+                let range = document.createRange();
+                let selection = window.getSelection();
+                range.selectNodeContents(element);
+                range.collapse(false);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            saveState();
+
+            [boldBtn, italicBtn].forEach(btn => {
+                btn.addEventListener("mousedown", (e) => e.preventDefault());
+            });
+
+            boldBtn.addEventListener("click", () => applyFormatting("b"));
+            italicBtn.addEventListener("click", () => applyFormatting("i"));
+
+            fontSizeMenu.addEventListener("click", (e) => {
+                if (e.target.tagName === "A") {
+                    let size = e.target.dataset.size;
+                    document.execCommand("styleWithCSS", false, true);
+                    document.execCommand("fontSize", false, "7");
+                    let fontElements = editor.querySelectorAll("font[size='7']");
+                    fontElements.forEach(el => {
+                        el.removeAttribute("size");
+                        el.style.fontSize = `${size}px`;
+                    });
+                }
+            });
+
+            fileInput.addEventListener("change", function () {
+                const file = fileInput.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        previewMedia(e.target.result, file.type.startsWith("video"));
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            urlInput.addEventListener("input", function () {
+                const url = urlInput.value.trim();
+                if (url) {
+                    const isVideo = /\.(mp4|webm|ogg)$/i.test(url);
+                    previewMedia(url, isVideo);
+                } else {
+                    mediaPreview.innerHTML = "";
+                    insertMediaBtn.disabled = true;
+                }
+            });
+
+            document.getElementById("addMediaBtn").addEventListener("mousedown", (e) => {
+                e.preventDefault();
+                saveSelection();
+            });
+
+            document.getElementById("addMediaBtn").addEventListener("click", () => {
+                mediaModal.show();
+            });
+
+            insertMediaBtn.addEventListener("click", insertMedia);
+
+            function saveSelection() {
+                const selection = window.getSelection();
+                if (selection.rangeCount > 0) {
+                    lastSelection = selection.getRangeAt(0);
+                }
+            }
+
+            function restoreSelection() {
+                if (lastSelection) {
+                    const selection = window.getSelection();
+                    selection.removeAllRanges();
+                    selection.addRange(lastSelection);
+                }
+            }
+
+            function previewMedia(src, isVideo) {
+                mediaPreview.innerHTML = isVideo
+                    ? `<video controls style="max-width: 100%;"><source src="${src}" type="video/mp4"></video>`
+                    : `<img src="${src}" style="max-width: 100%; height: auto;">`;
+                insertMediaBtn.disabled = false;
+            }
+
+            function insertMedia() {
+                restoreSelection();
+
+                let mediaHTML = "";
+                if (fileInput.files[0]) {
+                    const previewElement = mediaPreview.querySelector("img") || mediaPreview.querySelector("video source");
+                    if (previewElement) {
+                        const src = previewElement.getAttribute("src");
+                        mediaHTML = previewElement.tagName === "SOURCE"
+                            ? `<video controls class="resizable-media"><source src="${src}" type="video/mp4"></video>`
+                            : `<img src="${src}" class="resizable-media">`;
+                    }
+                } else if (urlInput.value.trim()) {
+                    const url = urlInput.value.trim();
+                    const isVideo = /\.(mp4|webm|ogg)$/i.test(url);
+                    mediaHTML = isVideo
+                        ? `<video controls class="resizable-media"><source src="${url}" type="video/mp4"></video>`
+                        : `<img src="${url}" class="resizable-media">`;
+                }
+
+                if (mediaHTML) {
+                    insertMediaAtCursor(mediaHTML);
+                    setTimeout(() => {
+                        document.querySelectorAll(".resizable-media").forEach(makeResizable);
+                    }, 100);
+                }
+
+                mediaModal.hide();
+                fileInput.value = "";
+                urlInput.value = "";
+                mediaPreview.innerHTML = "";
+                insertMediaBtn.disabled = true;
+            }
+
+            function insertMediaAtCursor(mediaHTML) {
+                let selection = window.getSelection();
+                let range = selection.rangeCount ? selection.getRangeAt(0) : document.createRange();
+
+                if (!selection.rangeCount) {
+                    range.selectNodeContents(editor);
+                    range.collapse(false);
+                }
+
+                let tempDiv = document.createElement("div");
+                tempDiv.innerHTML = `<p><br></p>${mediaHTML}<p><br></p>`;
+                let fragment = document.createDocumentFragment();
+
+                while (tempDiv.firstChild) {
+                    let node = tempDiv.firstChild;
+                    if (node.tagName === "IMG" || node.tagName === "VIDEO") {
+                        node.classList.add("resizable-media");
+                    }
+                    fragment.appendChild(node);
+                }
+
+                range.deleteContents();
+                range.insertNode(fragment);
+
+                range.collapse(false);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+
+            function makeResizable(img) {
+                if (!img || !editor.contains(img)) return;
+
+                img.setAttribute("draggable", "true"); // Ensure it remains draggable
+                let isResizing = false, startX, startY, startWidth, startHeight;
+
+                img.style.cursor = "default";
+
+                img.addEventListener("mousemove", function (e) {
+                    const rect = img.getBoundingClientRect();
+                    const offset = 10;
+
+                    if (e.clientX >= rect.right - offset || e.clientY >= rect.bottom - offset) {
+                        img.style.cursor = "nwse-resize";
+                    } else {
+                        img.style.cursor = "default";
+                    }
+                });
+
+                img.addEventListener("mousedown", function (e) {
+                    if (img.style.cursor === "nwse-resize") {
+                        e.preventDefault();
+                        isResizing = true;
+                        startX = e.clientX;
+                        startY = e.clientY;
+                        startWidth = img.offsetWidth;
+                        startHeight = img.offsetHeight;
+
+                        document.addEventListener("mousemove", resize);
+                        document.addEventListener("mouseup", stopResize);
+                    }
+                });
+
+                function resize(e) {
+                    if (!isResizing) return;
+                    img.style.width = `${startWidth + (e.clientX - startX)}px`;
+                    img.style.height = `${startHeight + (e.clientY - startY)}px`;
+                }
+
+                function stopResize() {
+                    isResizing = false;
+                    document.removeEventListener("mousemove", resize);
+                    document.removeEventListener("mouseup", stopResize);
+                }
+            }
+            editor.addEventListener("dragstart", function (e) {
+                if (e.target.classList.contains("resizable-media")) {
+                    e.target.classList.add("dragging");
+                    e.dataTransfer.setData("text/html", e.target.outerHTML);
+                    setTimeout(() => e.target.style.display = "none", 0); // Hide during drag
+                }
+            });
+
+            editor.addEventListener("dragover", function (e) {
+                e.preventDefault(); // Required to allow drop
+            });
+
+            editor.addEventListener("drop", function (e) {
+                e.preventDefault();
+                let draggedElement = document.querySelector(".dragging");
+
+                if (draggedElement) {
+                    draggedElement.remove(); // Remove from old position
+
+                    let range;
+                    let selection = window.getSelection();
+
+                    if (document.caretRangeFromPoint) {
+                        range = document.caretRangeFromPoint(e.clientX, e.clientY);
+                    } else if (document.caretPositionFromPoint) {
+                        let position = document.caretPositionFromPoint(e.clientX, e.clientY);
+                        range = document.createRange();
+                        range.setStart(position.offsetNode, position.offset);
+                    }
+
+                    if (range) {
+                        selection.removeAllRanges();
+                        selection.addRange(range);
+
+                        let newMedia = document.createElement("div");
+                        newMedia.innerHTML = e.dataTransfer.getData("text/html");
+
+                        let mediaElement = newMedia.firstChild;
+                        mediaElement.classList.remove("dragging");
+                        mediaElement.style.display = "block"; // Make visible again
+
+                        range.insertNode(mediaElement);
+
+                        // Reapply resizable functionality
+                        makeResizable(mediaElement);
+                    }
+                }
+            });
+            let cursorMarker = document.createElement("span");
+            cursorMarker.id = "cursor-marker";
+            cursorMarker.innerHTML = "|"; // Visible cursor
+            cursorMarker.style.color = "red"; // Make it noticeable
+
+            editor.addEventListener("dragover", function (e) {
+                e.preventDefault(); // Allow drop
+
+                let range;
+                let selection = window.getSelection();
+
+                if (document.caretRangeFromPoint) {
+                    range = document.caretRangeFromPoint(e.clientX, e.clientY);
+                } else if (document.caretPositionFromPoint) {
+                    let position = document.caretPositionFromPoint(e.clientX, e.clientY);
+                    range = document.createRange();
+                    range.setStart(position.offsetNode, position.offset);
+                }
+
+                if (range) {
+                    selection.removeAllRanges();
+                    selection.addRange(range);
+
+                    // Remove existing marker if any
+                    let existingMarker = document.getElementById("cursor-marker");
+                    if (existingMarker) existingMarker.remove();
+
+                    // Insert the cursor marker at the drop position
+                    range.insertNode(cursorMarker);
+                }
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,4 +1,6 @@
+import "./admin-dashboard.js";
 import "./auth.js";
+import "./community.js";
 import "./home.js";
 import "./log-state.js";
 import "./navbar.js";
