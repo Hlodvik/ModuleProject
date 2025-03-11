@@ -3,15 +3,28 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Users can only read & write their own profile
+    // Users Collection: Anyone can read, but users can only edit their own profile
     match /users/{userId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read; // Open read access to all users
+      allow write: if request.auth != null && request.auth.uid == userId; // Only user can edit their own profile
     }
 
-    // Allow reads for authenticated users, but prevent unauthorized writes
+    // Communities Collection: Anyone can read, all authenticated users can write
+    match /communities/{communityId} {
+      allow read; // Open read access for searching
+      allow write: if request.auth != null; // Any logged-in user can create or edit a community
+    }
+
+    // Search Index: Anyone can read, no direct writes allowed
+    match /searchIndex/{docId} {
+      allow read; // Open search access
+      allow write: if false; // Prevent direct writes (handled by backend)
+    }
+
+    // Fallback: Prevent unauthorized writes to any other collections
     match /{document=**} {
-      allow read: if request.auth != null;  // Only logged-in users can read data
-      allow write: if request.auth != null; // All logged-in users can write (for testing)
+      allow read; // Allow general reads
+      allow write: if request.auth != null; // Only authenticated users can write
     }
   }
 }

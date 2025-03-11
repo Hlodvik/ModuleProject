@@ -1,63 +1,88 @@
 import { onAuthStateChanged } from "firebase/auth";
-import { doc, getDoc, getDocs, collection, query, where } from "firebase/firestore";
-import { auth, db } from "./auth.js";  
+import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
+import { db, auth } from "./auth.js";
 
-document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("userSearchInput");
+document.addEventListener("DOMContentLoaded", () => {
+    const searchInput = document.getElementById("searchInput");
     const searchResults = document.getElementById("searchResults");
+    
+    if (!searchInput || !searchResults) {
+        return;
+    }
+    
+
+    async function searchIndex(searchTerm) {
+        const searchRef = collection(db, "searchIndex");
+        const q = query(
+            searchRef,
+            where("name", ">=", searchTerm),
+            where("name", "<=", searchTerm + "\uf8ff")
+        );
+        const querySnapshot = await getDocs(q);
+
+        return querySnapshot.docs.map(doc => ({
+            id: doc.data().refId,
+            name: doc.data().name,
+            type: doc.data().type
+        }));
+    }
 
     searchInput.addEventListener("input", async () => {
-        const searchTerm = searchInput.value.trim();
-
-        if (searchTerm.length < 1) {
+        const searchTerm = searchInput.value.trim().toLowerCase();
+        if (searchTerm.length < 2) {
             searchResults.innerHTML = "";
             searchResults.classList.remove("show");
             return;
         }
 
-        try {
-            // Query Firestore for users whose username starts with the search term
-            const usersRef = collection(db, "users");
-            const q = query(usersRef, orderBy("username"), startAt(searchTerm), endAt(searchTerm + "\uf8ff"));
-            const querySnapshot = await getDocs(q);
-
-            searchResults.innerHTML = ""; // Clear previous results
-
-            if (querySnapshot.empty) {
-                searchResults.innerHTML = `<div class="dropdown-item text-white">No users found</div>`;
-            } else {
-                querySnapshot.forEach((doc) => {
-                    const userData = doc.data();
-                    const userItem = document.createElement("a");
-                    userItem.href = `/u/${userData.username}`;
-                    userItem.classList.add("dropdown-item", "text-white");
-                    userItem.textContent = userData.username;
-                    searchResults.appendChild(userItem);
-                });
-            }
-
-            searchResults.classList.add("show");
-        } catch (error) {
-            console.error("Error searching users:", error);
-        }
+        const results = await searchIndex(searchTerm);
+        displaySearchResults(results);
     });
-});
 
-onAuthStateChanged(auth, async (user) => {
-    if (user) {
-        const userDocRef = doc(db, "users", user.uid);
-        const userDoc = await getDoc(userDocRef);
-        const profileImage = document.querySelector("#userMenu img");
-    
-        if (userDoc.exists()) {
-            const userData = userDoc.data();
-            if (userData.profilePic) {
-                profileImage.src = userData.profilePic; // use users profile pic
-            } else {
-                profileImage.src = "../assets/default-picture.png"; // use default if none
-            }
+    function displaySearchResults(results) {
+        searchResults.innerHTML = "";
+        searchResults.classList.add("show");
+
+        if (results.length === 0) {
+            searchResults.innerHTML = `<a class="dropdown-item text-white">No results found</a>`;
+            return;
         }
+
+        results.forEach(item => {
+            const resultItem = document.createElement("a");
+            resultItem.classList.add("dropdown-item", "text-white");
+            resultItem.textContent = item.type === "user" ? `User: ${item.name}` : `Community: ${item.name}`;
+            resultItem.href = item.type === "user" ? `/u/${item.name}` : `/co/${item.id}`;
+            searchResults.appendChild(resultItem);
+        });
+    }
+
+
+    const profilePic = document.getElementById("profilePic");
+    const cachedProfilePic = localStorage.getItem("profilePic");
+
+    if (profilePic && cachedProfilePic) {
+        profilePic.src = cachedProfilePic; // Load from cache instantly
     }
 });
 
- 
+
+onAuthStateChanged(auth, async (user) => {
+    const profilePic = document.getElementById("profilePic");
+    if (!profilePic) return;
+
+    if (user) {
+        const userDocRef = doc(db, "users", user.uid);
+        const userDoc = await getDoc(userDocRef);
+
+        if (userDoc.exists()) {
+            const userData = userDoc.data();
+            const profilePicUrl = userData.profilePic ? userData.profilePic : "../assets/default-picture.png";
+
+            profilePic.src = profilePicUrl;
+            localStorage.setItem("profilePic", profilePicUrl); // Store in cache
+        }
+    } else {
+        profilePic.src = "../assets/default-picture.png";
+    }
+});

@@ -1,9 +1,7 @@
 import { updateProfile, reauthenticateWithCredential, EmailAuthProvider, updatePassword, updateEmail, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { auth, db } from "./auth.js";   
 
-const storage = getStorage();
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("authButton")?.addEventListener("click", authenticateUser);
@@ -49,7 +47,7 @@ onAuthStateChanged(auth, async (user) => {
         if (socialLinks4) socialLinks4.value = userData.x || "";
 
         if (userData.profilePic) {
-            document.getElementById("profilePreview").src = userData.profilePic;
+            document.getElementById("profilePic").src = userData.profilePic;
         }
     }
 });

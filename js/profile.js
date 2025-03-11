@@ -1,53 +1,43 @@
-import { onAuthStateChanged } from "firebase/auth";
+ 
 import { auth, db } from "./auth.js";
-import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
 
-// Check if we are on a user profile URL or the logged-in user's profile
 document.addEventListener("DOMContentLoaded", async () => {
+    if (!window.location.pathname.startsWith("/u/")) return;
     const pathSegments = window.location.pathname.split("/");
-
-    if (pathSegments.length > 2 && pathSegments[1] === "u") {
-        const username = pathSegments[2]; // Extract "username"
-        await loadUserProfile(username);
-    } else {
-        // Load logged-in user's profile
-        onAuthStateChanged(auth, async (user) => {
-            if (!user) return;
-            const userDocRef = doc(db, "users", user.uid);
-            const userDoc = await getDoc(userDocRef);
-
-            if (userDoc.exists()) {
-                updateProfileUI(userDoc.data());
-            }
-        });
-    }
-});
-
-async function loadUserProfile(username) {
+    const username = pathSegments[2]; // Extract "testuser" from /u/testuser
+    const profilePic = document.getElementById("profilePic");
+    
     if (!username) {
-        console.error("No username found in URL.");
+        console.error("No username found in the URL.");
         return;
     }
 
+    // Check if profile picture is cached
+    const cachedProfilePic = localStorage.getItem(`profilePic_${username}`);
+    if (profilePic && cachedProfilePic) {
+        profilePic.src = cachedProfilePic; // Load cached profile picture immediately
+    }
+
     try {
-        // Query Firestore for the user document with this username
+        // Query Firestore to find user by username
         const usersRef = collection(db, "users");
         const q = query(usersRef, where("username", "==", username));
         const querySnapshot = await getDocs(q);
 
         if (querySnapshot.empty) {
-            console.error("User not found");
+            console.error("User not found.");
             document.getElementById("username").textContent = "User not found";
             return;
         }
 
-        // Get the first matching user document
+        // Get user data and update UI
         const userData = querySnapshot.docs[0].data();
         updateProfileUI(userData);
     } catch (error) {
-        console.error("Error loading user profile:", error);
+        console.error("Error fetching user data:", error);
     }
-}
+});
 
 // Update the profile UI with user data
 function updateProfileUI(userData) {
@@ -59,11 +49,12 @@ function updateProfileUI(userData) {
     setProfileLink("linkedin", userData.linkedin);
     setProfileLink("github", userData.github);
     setProfileLink("instagram", userData.instagram);
-    setProfileLink("x", userData.x);
+    setProfileLink("x", userData.twitter);
 
-    // Profile picture
+    // Profile picture caching
     const profilePic = userData.profilePic || "../assets/default-picture.png";
-    document.querySelectorAll("#profilePic").forEach(img => img.src = profilePic);
+    document.getElementById("profilePic").src = profilePic;
+    localStorage.setItem(`profilePic_${userData.username}`, profilePic); // Cache profile pic
 }
 
 // Utility function for setting profile links
@@ -72,10 +63,11 @@ function setProfileLink(id, url) {
     if (element) {
         if (url) {
             element.href = url;
-            element.textContent = url; // Show full URL next to the icon
+            element.textContent = url;
             element.classList.remove("d-none");
-        } else {
-            element.parentElement.classList.add("d-none"); // Hide if no link
+        } else if (element.parentElement) {
+            element.parentElement.classList.add("d-none");
         }
     }
 }
+

@@ -7,6 +7,7 @@ const googleProvider = new GoogleAuthProvider();
 onAuthStateChanged(auth, (user) => {//Index is only viewable if you are not logged in. in case you are logged in already and open up the root page, be redirected to home
     if (user) {
         const currentPage = window.location.pathname;
+        console.log("Logged in as UID:", user.uid);
         if (currentPage === "/index.html" || currentPage === "/") {
             window.location.href = "/html/home.html";
         }
@@ -19,7 +20,6 @@ async function login() {
     //on succesful login, be redirected to home page
     try {
         await signInWithEmailAndPassword(auth, email, password);
-        window.location.href = "html/home.html";
     } catch (error) {//give the function something to do if failure
         console.error("Login failed:", error.message);
         alert("Invalid email or password.");
@@ -46,21 +46,24 @@ async function loginWithApple() {
         console.error("Apple login failed:", error.message);
     }
 }
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector("#loginButton")?.addEventListener("click", login);
-    document.querySelector("#googleLoginButton")?.addEventListener("click", loginWithGoogle);
-    document.querySelector("#appleLoginButton")?.addEventListener("click", loginWithApple);
-});
-
-
 
 function logout() {
-    signOut(auth).then(() => { //signOut is a function provided by the firebase authentication module 
-        window.location.href = "index.html";
+    signOut(auth).then(() => {  
+        window.location.href = "/index.html";
     }).catch((error) => {
         alert("Error logging out: " + error.message);
     });
 }
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelector("#loginButton")?.addEventListener("click", login);
+    document.querySelector("#googleLoginButton")?.addEventListener("click", loginWithGoogle);
+    document.querySelector("#appleLoginButton")?.addEventListener("click", loginWithApple);
+    document.querySelector("#logoutButton")?.addEventListener("click", logout);
+});
+
+
+
+
  
-window.logout = logout;

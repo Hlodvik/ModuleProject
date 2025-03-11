@@ -2,19 +2,18 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
-  root: ".", // Root remains the project folder
+  root: ".",
   build: {
-    outDir: "dist", // Everything is built into dist/
-    emptyOutDir: true, // Clears dist before building
+    outDir: "dist",
+    emptyOutDir: true,
     rollupOptions: {
       input: {
-        main: resolve(__dirname, "index.html"), // Define entry points manually
+        main: resolve(__dirname, "index.html"),
         home: resolve(__dirname, "html/home.html"),
         profile: resolve(__dirname, "html/profile.html"),
         settings: resolve(__dirname, "html/settings.html"),
         adminDashboard: resolve(__dirname, "html/admin-dashboard.html"),
-        community: resolve(__dirname, "html/community.html")
-
+        community: resolve(__dirname, "html/community.html"),
       },
       output: {
         entryFileNames: "assets/[name].js",
@@ -23,8 +22,8 @@ export default defineConfig({
       },
     },
   },
-  publicDir: "public", // If you have assets like images, icons, etc.
+  publicDir: "public",
   server: {
-    open: true, // Open browser on dev start
-  },
+    open: true
+    }
 });
