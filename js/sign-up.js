@@ -2,7 +2,7 @@ import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAu
 import {auth} from "./auth.js";
 //all of the signing up functions that are used only in index.html
 
-
+if (document.readyState === "loading") {
 //async because that is what the web said to do for functions that have to do  with crud functions that work with the db
 async function signup() {
     let email = document.getElementById("signupEmail").value;
@@ -57,4 +57,4 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector("#signupButton")?.addEventListener("click", signup);
     document.querySelector("#googleSignupButton")?.addEventListener("click", signupWithGoogle);
     document.querySelector("#appleSignupButton")?.addEventListener("click", signupWithApple);
-});
+});}

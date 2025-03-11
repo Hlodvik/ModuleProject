@@ -1,8 +1,9 @@
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getAuth, connectAuthEmulator } from "firebase/auth";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
+import { getStorage, connectStorageEmulator } from "firebase/storage";
 
+ 
 //this was supplied to me to add when I created the project in firebase
 const firebaseConfig = {
     apiKey: "AIzaSyBjx0embPKzNqLoxm8bMDFsgFRUs_QInVw",
@@ -14,13 +15,17 @@ const firebaseConfig = {
     measurementId: "G-G1PTB6MMNS"
 };
 
-const firebaseApp = initializeApp(firebaseConfig);//init
-export const auth = getAuth(firebaseApp);//exports
-export const db = getFirestore(firebaseApp);  
+// Initialize Firebase
+const firebaseApp = initializeApp(firebaseConfig);
+export const auth = getAuth(firebaseApp);
+export const db = getFirestore(firebaseApp);
 export const storage = getStorage(firebaseApp);
 
-
-
-
+// Connect to Firebase Emulators for local testing
+if (window.location.hostname === "localhost") {
+    connectAuthEmulator(auth, "http://127.0.0.1:9099");
+    connectFirestoreEmulator(db, "127.0.0.1", 8080);
+    connectStorageEmulator(storage, "127.0.0.1", 9199);
+}
 
 

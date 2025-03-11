@@ -1,6 +1,6 @@
 
 
-
+if (document.readyState === "loading") {
 document.addEventListener("DOMContentLoaded", function () {
     const postBody = document.getElementById("postBody");
     
@@ -46,4 +46,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     });
-});
+});}

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <link href="../css/style.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/main.js" defer></script>
 
 </head>
 
@@ -138,7 +138,8 @@
                     </div>
 
                     <!-- Create Community Button -->
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create New Community</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createCommunityModal">Create
+                        New Community</button>
                 </div>
             </main>
         </div>
@@ -163,8 +164,9 @@
                         <div class="mb-3">
                             <label for="subdomain" class="form-label">Subdomain (e.g., yourcommunity)</label>
                             <input type="text" class="form-control bg-secondary text-white" id="subdomain"
-                                pattern="^[a-zA-Z0-9_-]+$"
-                                title="Only letters, numbers, underscores, and hyphens are allowed" required>
+                            pattern="[a-zA-Z0-9_\-]+"
+                            title="Only letters, numbers, underscores, and hyphens are allowed"
+                            required>
                         </div>
                         <div class="mb-3">
                             <label for="communityBio" class="form-label">Community Bio</label>
@@ -179,7 +181,8 @@
                             <label for="communityBanner" class="form-label">Community Banner</label>
                             <input type="file" class="form-control" id="communityBanner" accept="image/*">
                         </div>
-                        <button type="submit" class="btn custom-btn-orange w-50" id="createCommunityBtn">Create Community</button>
+                        <button type="submit" class="btn custom-btn-orange w-50" id="createCommunityBtn">Create
+                            Community</button>
                     </form>
                 </div>
             </div>
