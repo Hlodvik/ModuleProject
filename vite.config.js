@@ -12,8 +12,8 @@ export default defineConfig({
         home: resolve(__dirname, "html/home.html"),
         profile: resolve(__dirname, "html/profile.html"),
         settings: resolve(__dirname, "html/settings.html"),
-        settings: resolve(__dirname, "html/admin-dashboard.html"),
-        settings: resolve(__dirname, "html/community.html")
+        adminDashboard: resolve(__dirname, "html/admin-dashboard.html"),
+        community: resolve(__dirname, "html/community.html")
 
       },
       output: {
