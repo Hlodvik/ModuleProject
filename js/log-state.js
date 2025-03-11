@@ -8,7 +8,7 @@ onAuthStateChanged(auth, (user) => {//Index is only viewable if you are not logg
     if (user) {
         const currentPage = window.location.pathname;
         if (currentPage === "/index.html" || currentPage === "/") {
-            window.location.href = "home.html";
+            window.location.href = "/html/home.html";
         }
     }
 });
