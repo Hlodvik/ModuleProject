@@ -77,3 +77,18 @@ const categories = {
     "scholarly": "bi-mortarboard"
 };
 
+// fiction 
+// poetry
+// screenwriting
+// networking 
+// support
+// crime
+// rpg writing
+// game writing
+// romance
+// writing prompts
+// short stories
+// myth
+// fanfiction
+// historical
+// scholarly

@@ -1,0 +1,249 @@
+ 
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap; /* Allows buttons to move below text */
+    gap: 10px;
+    justify-content: center;
+}
+.custom-btn-orange {
+    background-color: #ff4500 !important;
+    border: none !important;
+    color: white !important;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.custom-btn-dark {
+    background-color: #29292b !important;
+    border: none !important;
+    color: white !important;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.custom-btn-dark:hover,
+.custom-btn-orange:hover {
+    opacity: 0.8;
+} 
+/* for the categories */
+#close-btn {
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin-left: 1.2rem;
+    display: inline-block;
+    transition: opacity 0.5s ease;
+    z-index: 15;
+} 
+/* for enlarged community cards */
+.card-x-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+.card-x-btn {
+    display: block;
+} 
+.custom-toggle-label {
+    font-size: 1rem;
+    color: white;
+    margin-left: 0.5em; 
+} 
+/* Custom Toggle Container */
+.custom-toggle {
+    display: inline-flex;
+    align-items: center;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    gap: 1vw;
+    margin-bottom: 2vh;
+} 
+/* hide default */
+.custom-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+} 
+.custom-toggle-slider {
+    position: relative;
+    width: 2.6em;
+    /* Scales with font size */
+    height: 1.3em;
+    background-color: #444;
+    border-radius: 50vw;
+    /* Ensures fully rounded shape */
+    transition: background-color 0.3s ease;
+    display: inline-block;
+} 
+.custom-toggle-slider::before {
+    content: "";
+    position: absolute;
+    top: 0.2em;
+    left: 0.2em;
+    width: .9em;
+    height: .9em;
+    background-color: #888;    /* Light gray if off */
+    border-radius: 50%;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+} 
+/* orange when on */
+.custom-toggle input:checked+.custom-toggle-slider {
+    background-color: #ff4500 !important;
+} 
+.custom-toggle input:checked+.custom-toggle-slider::before {
+    transform: translateX(1.3em);
+} 
+/* remove blue highlight */
+.custom-toggle input:focus+.custom-toggle-slider {
+    outline: none;
+    box-shadow: none;
+} 
+/* forms */
+.form-check-input:checked {
+    background-color: #FF4500 !important; /* important because it is overwriting bootstrap */
+    border-color: #FF4500 !important;
+} 
+.form-check-input:hover {
+    border-color: #FF4500 !important;
+}  
+.form-check-input:focus {
+    box-shadow: 0 0 5px #ff450080 !important;
+    /* glow */
+    border-color: #FF4500 !important;
+}
+/* Add dark background and light grey border to form inputs */
+.form-control {
+    background-color: #343a40;
+    /* Dark background */
+    color: white;
+    /* White text */
+    border: 1px solid #ced4da;
+    /* Light grey border */
+}
+/* Adjust label text color */
+.form-label {
+    color: white;
+} 
+/* Form input fields hover and focus effect */
+.form-control:focus {
+    border-color: #ff440091;
+    /* Light blue border on focus */
+    background-color: #343a40;
+    color: white;
+}
+.input-group .input-group-text {
+    border-right: none; 
+} 
+.input-group .form-control {
+    border-left: none;
+} 
+.form-control:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+.view-post {
+    color: #ff4500;
+    text-decoration: none;
+    font-size: 14px;
+}
+/* Voting */
+.vote-count {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+.vote-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #828282;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+.vote-button:focus {
+    outline: none;
+}
+.active-upvote {
+    color: #ff4500 !important; /* Reddit Orange */
+}
+.active-downvote {
+    color: #5a8dee !important; /* Reddit Blue */
+}
+/* comment and share */
+.comment-count,
+.share-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #b1b1b1;
+    cursor: pointer;
+}
+.comment-count i,
+.share-icon i {
+    font-size: 16px;
+}
+.comment-count:hover,
+.share-icon:hover {
+    color: #fff;
+}
+.custom-select {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 5px 10px;
+    opacity: 0; /* Hide text */
+    pointer-events: none; /* Prevent clicks */
+    position: absolute; /* Position it off-screen if needed */
+}
+.sorting-container {
+    position: relative;
+    display: inline-block;
+}
+.sorting-label {
+    color: white;
+    cursor: pointer;
+}
+.sorting-container:hover .custom-select {
+    opacity: 1; /* Show dropdown when hovering over the label */
+    pointer-events: auto;
+}
+/* exit (x icon) button for explore */
+.Xi {
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: opacity 0.5s ease;
+}
+.navbar-brand {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.search-bar {
+    position: relative; /* Ensures dropdown aligns with input field */
+}
+#searchResults {
+    width: 100%;  
+    position: absolute;  
+    left: 0; /* align the dropdown with the search input */
+    z-index: 10;  
+} 
+.dropdown-menu {
+    min-width: 200px;
+} 
+.dropdown-item:hover {
+    background-color: #414951 !important;
+} 

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile</title>
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg"> 
+    <script type="module" src="/js/main.js" defer></script>
+</head>
+<body class="text-white">
+    <div class="container mt-5">
+        <h2 class="text-center">Complete Your Profile</h2>
+
+        <!-- Step 1: Display Name -->
+        <section id="step1" class="setup-step">
+            <h4>Enter Your Display Name</h4>
+            <input type="text" id="displayNameInput" class="form-control" placeholder="Pick any name you want shown on your profile!">
+            <button class="btn btn-primary mt-3" id="next1">Next</button>
+        </section>
+
+        <!-- Step 2: Profile Picture -->
+        <div id="step2">
+            <h2>Upload Your Profile Picture</h2>
+        
+            <!-- Profile Picture Element (Triggers Upload) -->
+            <img id="profilePic" src="/images/default-picture.png" class="rounded-circle" style="width: 30vw; height: 30vh; object-fit: cover; cursor: pointer;">
+            
+            <!-- Hidden File Input Inside Form -->
+            <form id="profileUpload">
+                <input type="file" accept="image/*" hidden>
+            </form>
+        
+            <!-- Modal for Previewing Before Confirming Upload -->
+            <div class="modal fade" id="profilePreviewModal" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Confirm Upload</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img id="profileModalPic" src="" class="rounded-circle" style="width: 120px; height: 120px; object-fit: cover;">
+                            <div id="uploadSpinner" class="spinner-border d-none"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="confirmUpload" class="custom-btn-orange">Confirm Upload</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Skip & Next Buttons -->
+            <button id="skipProfilePic" class="custom-btn-dark">Skip</button>
+            <button id="next2" class="custom-btn-orange d-none">Next</button>
+        </div>
+
+        <!-- Step 3: Social Links & Bio -->
+        <section id="step3" class="setup-step d-none">
+            <h4>Add Social Links & Bio</h4>
+            <input type="text" id="github" class="form-control mt-2" placeholder="Twitter (optional)">
+            <input type="text" id="linkedin" class="form-control mt-2" placeholder="Instagram (optional)">
+            <input type="text" id="twitter" class="form-control mt-2" placeholder="Twitter (optional)">
+            <input type="text" id="instagram" class="form-control mt-2" placeholder="Instagram (optional)">
+            <textarea id="bio" class="form-control mt-2" placeholder="Tell us about yourself"></textarea>
+            <button class="btn btn-primary mt-3" id="next3">Next</button>
+        </section>
+
+        <!-- Step 4: Choose Interests -->
+        <section id="step4" class="setup-step d-none">
+            <h4>Select Your Interests</h4>
+            <div id="categories">
+                <label><input type="checkbox" value="fiction"> Fiction</label><br>
+                <label><input type="checkbox" value="poetry"> Poetry</label><br>
+                <label><input type="checkbox" value="screenwriting"> Screenwriting</label><br>
+                <label><input type="checkbox" value="networking"> Writer Networking</label><br>
+                <label><input type="checkbox" value="guides"> Writing Guides</label><br>
+            </div>
+            <button class="btn btn-primary mt-3" id="finish" disabled>Complete Setup</button>
+        </section>
+
+        <!-- Step 5: Join a Community -->
+        <section id="step5" class="setup-step d-none">
+            <h4>Join a Community</h4>
+            <div id="communityList" class="row g-4"></div>
+           
+        </section>
+    </div>
+</body>
+</html>

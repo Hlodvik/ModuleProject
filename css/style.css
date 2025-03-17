@@ -1,16 +1,22 @@
 body {
     background-color: #0e1113;
-}   
- 
+} 
+*{
+    color:white;
+}  
 a {
     text-decoration: none;
 }
-
 .hero-section {
-    top: 25vh;
-    min-width: 70vw;
-    min-height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+}
+.hero-section h1 {
+    font-size: 2rem; /* Adjust for mobile */
 }
 .comment {
     background-color: #161a1d;
@@ -39,15 +45,12 @@ a {
     align-items: center;
     margin-bottom: 5vh;
 }
-
-
 /* Ensures User Activity Borders are Visible */
 .user-activity {
     border: 1px solid #ccc;
     padding: 5px;
     border-radius: 5px;
 }
-
 .z-50{
     z-index: 50;
 }
@@ -61,11 +64,9 @@ a {
     overflow-y: auto;
     display: grid;
 }
- 
 .sidebar a:hover {
     background-color: #29292b;
 }
-
 .navbar {
     position: sticky;
     z-index: 10;
@@ -73,197 +74,14 @@ a {
     background-color: #0e1113;
 
 }
-.navbar ::placeholder {
-    color: white;
-}
-.navbar-brand {
-    color: #ffffff;
-    text-decoration: none;
-}
-
-.search-bar {
-    position: relative; /* Ensures dropdown aligns with input field */
-}
-#searchResults {
-    width: 100%;  
-    position: absolute;  
-    left: 0; /* align the dropdown with the search input */
-    z-index: 10;  
-}
-
-.custom-toggle-label {
-    font-size: 1rem;
-    color: white;
-    margin-left: 0.5em; 
-}
-
-/* Custom Toggle Container */
-.custom-toggle {
-    display: inline-flex;
-    align-items: center;
-    font-size: 1rem;
-    color: white;
-    cursor: pointer;
-    gap: 1vw;
-    margin-bottom: 2vh;
-}
-
-/* hide default */
-.custom-toggle input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-    position: absolute;
-}
- 
-.custom-toggle-slider {
-    position: relative;
-    width: 2.6em;
-    /* Scales with font size */
-    height: 1.3em;
-    background-color: #444;
-    border-radius: 50vw;
-    /* Ensures fully rounded shape */
-    transition: background-color 0.3s ease;
-    display: inline-block;
-}
-
-
-.custom-toggle-slider::before {
-    content: "";
-    position: absolute;
-    top: 0.2em;
-    left: 0.2em;
-    width: .9em;
-    height: .9em;
-    background-color: #888;    /* Light gray if off */
-    border-radius: 50%;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-}
-
-/* orange when on */
-.custom-toggle input:checked+.custom-toggle-slider {
-    background-color: #ff4500 !important;
-}
-
-.custom-toggle input:checked+.custom-toggle-slider::before {
-    transform: translateX(1.3em);
-}
-
-/* remove blue highlight */
-.custom-toggle input:focus+.custom-toggle-slider {
-    outline: none;
-    box-shadow: none;
-}
-
-/* Change radio button selection color to #FF4500 */
-.form-check-input:checked {
-    background-color: #FF4500 !important; /* important because it is overwriting bootstrap */
-    border-color: #FF4500 !important;
-}
- 
-.form-check-input:hover {
-    border-color: #FF4500 !important;
-}
-
-/* Remove blue outline when focused */
-.form-check-input:focus {
-    box-shadow: 0 0 5px #ff450080 !important;
-    /* glow */
-    border-color: #FF4500 !important;
-}
-
-.custom-btn-orange {
-    background-color: #ff4500 !important;
-    border: none !important;
-    color: white !important;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.custom-btn-dark {
-    background-color: #29292b !important;
-    border: none !important;
-    color: white !important;
-    padding: 10px;
-    font-weight: bold;
-    border-radius: 5px;
-}
-
-.custom-btn-dark:hover,
-.custom-btn-orange:hover {
-    opacity: 0.8;
-}
-
-.dropdown-menu {
-    min-width: 200px;
-}
-
-.dropdown-item:hover {
-    background-color: #414951 !important;
-}
-
-
-
 .edit ::placeholder {
     color: #6c757d;
      
-}
-
-.input-group .input-group-text {
-    border-right: none;
-
-}
-
-.input-group .form-control {
-    border-left: none;
-}
-
-.form-control:focus {
-    outline: none !important;
-    box-shadow: none !important;
-}
-
-/* Add dark background and light grey border to form inputs */
-.form-control {
-    background-color: #343a40;
-    /* Dark background */
-    color: white;
-    /* White text */
-    border: 1px solid #ced4da;
-    /* Light grey border */
-}
-
-/* Adjust label text color */
-.form-label {
-    color: white;
-}
-
-/* Style the Edit Profile header */
-h1 {
-    text-align: left;
-    border-bottom: 2px solid #ced4da;
-    /* Light grey underline */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
 } 
-
-/* Form input fields hover and focus effect */
-.form-control:focus {
-    border-color: #ff440091;
-    /* Light blue border on focus */
-    background-color: #343a40;
-    color: white;
-}
- 
- 
- 
-
+/* margin top view heigh 4, looks bootstrappy huh */
 .mt-vh4{
     margin-top: 4vh;
-}
-
+} 
 .post-container {
     display: flex;
     flex-direction: column;
@@ -273,46 +91,12 @@ h1 {
     margin-bottom: 12px;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     transition: background 0.2s ease-in-out;
-}
-
-
-
-.vote-count {
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-}
-
-.post-content {
-    flex-grow: 1;
-}
-
-.post-header {
-    font-size: 14px;
-    color: #b1b1b1;
-    margin-bottom: 6px;
-}
-
-.post-title {
-    font-size: 18px;
-    color: #ffffff;
-    margin-bottom: 8px;
-}
-
+} 
 .post-body {
     font-size: 14px;
     color: #d1d1d1;
     line-height: 1.5;
-}
-
-
-
-.view-post {
-    color: #ff4500;
-    text-decoration: none;
-    font-size: 14px;
-}
-
+} 
 .view-post:hover {
     text-decoration: underline;
 }
@@ -324,50 +108,6 @@ h1 {
     padding-top: 10px;
     border-top: 1px solid #222; /* Separates post from actions */
 }
-
-/* Voting buttons */
-.vote-button {
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: #828282;
-    cursor: pointer;
-    transition: color 0.2s ease-in-out;
-}
-
-.vote-button:focus {
-    outline: none;
-}
-
-.active-upvote {
-    color: #ff4500 !important; /* Reddit Orange */
-}
-
-.active-downvote {
-    color: #5a8dee !important; /* Reddit Blue */
-}
-
-/* Comment and Share Icons */
-.comment-count,
-.share-icon {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 14px;
-    color: #b1b1b1;
-    cursor: pointer;
-}
-
-.comment-count i,
-.share-icon i {
-    font-size: 16px;
-}
-
-.comment-count:hover,
-.share-icon:hover {
-    color: #fff;
-}
-
 #category-container {
     gap: 5rem;
     position: relative;
@@ -379,13 +119,11 @@ h1 {
     justify-content: center;
 
 }
-
 .category-grid {
     position: relative;
     width: 80%;
     text-align: center;
 }
-
 .category-card {
     display: flex;
     gap: 1em;
@@ -399,17 +137,15 @@ h1 {
     position: relative; 
     border-radius: 10px;
     margin-bottom: 1rem;
+    height: 5rem;
 }
-
 .category-card:hover {
     transform: scale(1.1);
     background-color: #343536;
 }
-
 .category-icon {
     font-size: 2rem;  
 }
-
 /* Community Cards */
 .community-card {
     display: flex;
@@ -420,12 +156,10 @@ h1 {
     cursor: pointer;
     transition: all 0.3s ease;
 }
-
 .community-card:hover {
     transform: scale(1.1);
     box-shadow: 0 4px 10px #3131311e;
 }
-
 /* Top Half - Banner & Overlay */
 .card-banner {
     height: 50%;
@@ -433,31 +167,26 @@ h1 {
     background-position: center;
     position: fixed;
 }
-
 .card-overlay {
     position: absolute;
     display: flex;
     flex-direction: column;
     text-align: center;
 }
-
 .card-pic {
     width: 35%;
     height: 35%;
     border-radius: 50%;
     border: .1rem solid #1a1a1b;
 }
-
 .card-name {
     font-weight: bold;
     margin-top: 5px;
 }
-
 /* Bottom Half - Details */
 .card-details {
     padding: 20px;
 }
-
 .card-bio {
     font-size: 0.9rem;
     color: #ccc;
@@ -467,95 +196,124 @@ h1 {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
 .community-tags {
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
 }
-
 .community-tag {
     background-color: #343536;
     padding: 5px 10px;
     border-radius: 15px;
     font-size: 0.8rem;
     color: white;
-}
-
+} 
 /* Expanded Card */
 .expanded {
     width: 100% !important;
     transition: all 0.3s ease-in-out;
-}
-
+} 
 .expanded .card-banner {
     height: 200px;
-}
-
+} 
 .expanded .card-bio {
     white-space: normal;
     height: auto;
-}
-
-/* for the categories */
-#close-btn {
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-left: 1.2rem;
-    display: inline-block;
-    transition: opacity 0.5s ease;
-    z-index: 15;
-}
-
-/* for enlarged community cards */
-.card-x-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.5rem;
-    cursor: pointer;
-    display: none;
-}
-
-.expanded .card-x-btn {
+} 
+.expanded {
     display: block;
-}
-
-
-
-/* Sorting Dropdown */
-.sorting-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 20px;
-}
-
-
-.xxx {
-    font-size: 2.5rem;
-    cursor: pointer;
-    margin-left: 15px;
-    transition: opacity 0.5s ease;
-}
-
+} 
 .hc {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding: 5rem;
-    top: 35vh;
+    padding: 1rem; 
     transition: all 0.5s ease;
+    margin-bottom: 3rem;
 }
 
-.hdr {
-    font-size: 2.5rem;
-    transition: all 0.5s ease;
+
+/* Profile setup */
+.ps-com-card {
+    width: 66%; /* 2/3 of the screen width */
+    max-width: 800px;
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Banner */
+.ps-banner {
+    width: 100%;
+    height: 150px; /* Adjust for aesthetics */
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Community Name & Profile Picture */
+.ps-com-header {
+    position: absolute;
+    bottom: -30px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.ps-com-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 3px solid white;
+    z-index: 2;
+    object-fit: cover;
+}
+
+/* Community Info Section */
+.ps-com-info {
+    padding: 50px 20px 20px; /* Padding to accommodate avatar positioning */
+    text-align: left;
+}
+
+.ps-com-bio {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-bottom: 10px;
+}
+
+.ps-memcount {
+    font-size: 0.8rem;
+    color: #bbb;
+}
+
+/* Join Button */
+.ps-join-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
     text-align: center;
-    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ps-join-btn:not(.joined) {
+    background-color: #ff4500;
+    color: white;
+}
+
+.ps-join-btn.joined {
+    background-color: #555;
+    color: white;
 }
