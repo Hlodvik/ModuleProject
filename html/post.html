@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script type="module" src="/js/main.js" defer></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
+        <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
+            <img src="/images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
+        </a>
+        <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
+            <div class="input-group">
+                <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
+                    <i class="bi bi-search"></i>
+                </span>
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
+                    placeholder="Search Users or Communities" aria-label="Search" id="searchInput">
+            </div>
+            <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
+        </form>
+        <div class="dropdown ms-auto">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
+                <li><a class="dropdown-item text-white" id="homeBtn"><i class="bi bi-house me-2"></i> Home</a></li>
+                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View
+                        Profile</a></li>
+                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a>
+                </li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>
+                        Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <main class="col-md-9 col-lg-10 px-md-4 d-flex justify-content-center">
+                <div class="col-lg-9 border border-secondary p-4 rounded">
+                    <div id="postContainer">
+                        <div class="d-flex mb-3">
+                            <img id="authorPic" class="rounded-circle me-2"
+                                style="height: 75px; width: 75px; object-fit: cover;">
+                            <div>
+                                <p class="text-secondary mb-1" id="postCommunity"></p>
+                                <a id="authorName" href="#" class="text-white fw-bold"></a>
+                            </div>
+                        </div>
+    
+                        <h2 id="postTitle" class="fw-bold"></h2>
+                        <p id="postContent" class="mt-2"></p>
+    
+                        <div class="d-flex align-items-center justify-content-between mt-3">
+                            <div>
+                                <button id="upvoteBtn" class="btn btn-outline-light btn-sm">
+                                    <i class="bi bi-arrow-up"></i> <span id="upvoteCount">0</span>
+                                </button>
+                                <button id="downvoteBtn" class="btn btn-outline-light btn-sm">
+                                    <i class="bi bi-arrow-down"></i>
+                                </button>
+                                <span class="ms-2 text-secondary">
+                                    <i class="bi bi-chat"></i> <span id="commentCount">0</span> Comments
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- Comments Section -->
+                    <div id="commentsSection" class="mt-4">
+                        <h5 class="text-white">Comments</h5>
+                        <div class="card bg-dark text-white p-3">
+                            <textarea id="commentInput" class="form-control bg-secondary text-white mb-2"
+                                placeholder="Write a comment..."></textarea>
+                            <button id="submitComment" class="btn custom-btn-orange">Post Comment</button>
+                        </div>
+                        <div id="commentsList" class="mt-3">
+                            <!-- Comments will be dynamically added here -->
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

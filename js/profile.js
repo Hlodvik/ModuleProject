@@ -1,76 +1,64 @@
-import { auth, db } from "./auth.js";
+import { auth, db, storage } from "./main.js";
 import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore";
+import { fetchUserFeed } from "./feed.js";
+import { renderFeed } from "./render-feed.js";
 
-document.addEventListener("DOMContentLoaded", async () => {
-    if (!window.location.pathname.startsWith("/u/")) return;
+document.addEventListener("DOMContentLoaded", async function () {
+    // Extract the username from the URL (assuming format: /u/{username})
+    const urlParts = window.location.pathname.split("/");
+    const username = urlParts[urlParts.indexOf("u") + 1];
 
-    const pathSegments = window.location.pathname.split("/");
-    const username = pathSegments[2]; // Extract "testuser" from /u/testuser
-
-    if (!username) {
-        console.error("No username found in the URL.");
-        return;
-    }
-
-    // Check if profile picture is cached
-    const profilePic = document.getElementById("profilePic");
-    const cachedProfilePic = localStorage.getItem(`profilePic_${username}`);
-
-    if (profilePic && cachedProfilePic) {
-        profilePic.src = cachedProfilePic; // Load cached profile picture immediately
-    }
+    if (!username) return;
 
     try {
-        // Query Firestore to find user by username
+        // Query firestore for user doc
         const usersRef = collection(db, "users");
-        const q = query(usersRef, where("username", "==", username));
-        const querySnapshot = await getDocs(q);
+        const userQuery = query(usersRef, where("username", "==", username));
+        const querySnapshot = await getDocs(userQuery);
 
-        if (querySnapshot.empty) {
-            console.error("User not found.");
-            document.getElementById("username").textContent = "User not found";
-            return;
-        }
+        if (querySnapshot.empty) return;
 
-        // Get user data and update UI
-        const userData = querySnapshot.docs[0].data();
-        updateProfileUI(userData);
+        // eh, whatsup, doc?
+        const userDoc = querySnapshot.docs[0];
+        const userData = userDoc.data();
+
+        // update the profile UI
+        await updateProfileUI(userData);
+
+        await fetchUserFeed(userDoc.id);
+ 
+
     } catch (error) {
         console.error("Error fetching user data:", error);
     }
 });
 
-// Update the profile UI with user data
-function updateProfileUI(userData) {
-    document.getElementById("username").textContent = userData.username || "Anonymous";
-    document.getElementById("userBio").textContent = userData.bio || "No bio available";
-    document.getElementById("userLocation").textContent = userData.location || "Location not provided";
-    document.getElementById("userPronouns").textContent = userData.pronouns || "";
+// Update profile UI with user data
+async function updateProfileUI(userData) {
+    updateElement("username", userData.username);
+    updateElement("userBio", userData.bio);
+    updateElement("userLocation", userData.location);
+    updateElement("userPronouns", userData.pronouns);
+    setSocialLinks("linkedin", userData.linkedin);
+    setSocialLinks("github", userData.github);
+    setSocialLinks("instagram", userData.instagram);
+    setSocialLinks("twitter", userData.twitter);
+}
 
-    setProfileLink("linkedin", userData.linkedin);
-    setProfileLink("github", userData.github);
-    setProfileLink("instagram", userData.instagram);
-    setProfileLink("x", userData.twitter);
-
-    // Update profile picture
-    const profilePic = document.getElementById("profilePic");
-    if (profilePic) {
-        const profilePicUrl = userData.profilePic || "../assets/default-picture.png";
-        profilePic.src = profilePicUrl;
-        localStorage.setItem(`profilePic_${userData.username}`, profilePicUrl); // Cache profile pic
+// Utility function to update text content
+function updateElement(id, value) {
+    const element = document.getElementById(id);
+    if (element && value) {
+        element.textContent = value;
     }
 }
 
-// Utility function for setting profile links
-function setProfileLink(id, url) {
+// Utility function for setting social links
+function setSocialLinks(id, url) {
     const element = document.getElementById(id);
-    if (element) {
-        if (url) {
-            element.href = url;
-            element.textContent = url;
-            element.classList.remove("d-none");
-        } else if (element.parentElement) {
-            element.parentElement.classList.add("d-none");
-        }
+    if (element && url) {
+        element.href = url;
+        element.textContent = url;
+        element.classList.remove("d-none");
     }
 }

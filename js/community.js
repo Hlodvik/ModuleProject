@@ -1,49 +1,112 @@
+import { db } from "./main.js";
+import { collection, query, where, getDocs, doc, getDoc } from "firebase/firestore"; 
+import { fetchCommunityFeed } from "./feed.js";
 
+document.addEventListener("DOMContentLoaded", async () => {
+    const nameElem = document.getElementById("communityName");
+    const picElem = document.getElementById("communityPic");
+    const bannerElem = document.getElementById("banner");
+    const bioElem = document.getElementById("bio");
+    const adminsElem = document.getElementById("admins");
+    const membersElem = document.getElementById("members");
+    const memCountElem = document.getElementById("memCount");
 
-if (document.readyState === "loading") {
-document.addEventListener("DOMContentLoaded", function () {
-    const postBody = document.getElementById("postBody");
-    
-    function wrapSelectedText(tag) {
-        const start = postBody.selectionStart;
-        const end = postBody.selectionEnd;
-        const selectedText = postBody.value.substring(start, end);
-        const beforeText = postBody.value.substring(0, start);
-        const afterText = postBody.value.substring(end);
-        
-        if (selectedText) {
-            postBody.value = `${beforeText}[${tag}]${selectedText}[/${tag}]${afterText}`;
-            postBody.setSelectionRange(start + tag.length + 2, end + tag.length + 2);
-            postBody.focus();
+    const pathSegments = window.location.pathname.split("/");
+    const communitySubdomain = pathSegments[2]; // format: /co/{subdomain}
+
+    // If not on a /co/ path, exit
+    if (!window.location.pathname.startsWith("/co/")) {
+        return;
+    }
+
+    try {
+        // get docs with subdomain
+        const q = query(collection(db, "communities"), where("subdomain", "==", communitySubdomain));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+            console.error("Community not found:", communitySubdomain);
+            return;
+        }
+
+        // Grab the first matching doc
+        const communityDoc = querySnapshot.docs[0];
+        const communityData = communityDoc.data(); // Extract fields
+        const communityDocId = communityDoc.id;    // The Firestore doc ID
+
+        // Fill in community details
+        if (nameElem) nameElem.textContent = communityData.name;
+        if (bioElem) bioElem.textContent = communityData.bio || "";
+        if (picElem && bannerElem) loadImages(communityData.communityPicUrl, communityData.bannerUrl);
+        if (adminsElem) loadAdmins(adminsElem, communityData.admins);
+        if (membersElem) loadMembers(membersElem, communityData.members);
+
+        //  call fetchCommunityFeed with commID
+        fetchCommunityFeed(communityDocId);
+
+    } catch (error) {
+        console.error("Error loading community:", error);
+    }
+
+    function loadImages(profilePicUrl, bannerUrl) {
+        if (picElem && profilePicUrl) {
+            picElem.src = profilePicUrl;
+            localStorage.setItem("communityProfilePic", profilePicUrl);
+        } else {
+            console.warn("No profile picture found. Skipping.");
+        }
+
+        if (bannerElem && bannerUrl) {
+            bannerElem.src = bannerUrl;
+            localStorage.setItem("communityBannerPic", bannerUrl);
+        } else {
+            console.warn("No banner found. Skipping.");
         }
     }
 
-    // Bold button
-    document.getElementById("boldBtn").addEventListener("click", function () {
-        wrapSelectedText("b");
-    });
+    async function loadAdmins(adminsElem, adminUIDs) {
+        // get admins usernames
+        const adminUsernames = await Promise.all(
+            adminUIDs.map(async (uid) => {
+                const userSnap = await getDoc(doc(db, "users", uid));
+                if (userSnap.exists()) {
+                    return userSnap.data().username;
+                }
+                return "Unknown Admin";
+            })
+        );
+        // Populate admins list
+        adminsElem.innerHTML = adminUsernames.map(name => `<li>${name}</li>`).join("");
+    }
 
-    // Italic button
-    document.getElementById("italicBtn").addEventListener("click", function () {
-        wrapSelectedText("i");
-    });
-
-    // Font size dropdown handling
-    document.querySelectorAll(".font-size-option").forEach(option => {
-        option.addEventListener("click", function (e) {
-            e.preventDefault();
-            const fontSize = this.getAttribute("data-size").replace("px", "");
-            const start = postBody.selectionStart;
-            const end = postBody.selectionEnd;
-            const selectedText = postBody.value.substring(start, end);
-            const beforeText = postBody.value.substring(0, start);
-            const afterText = postBody.value.substring(end);
-
-            if (selectedText) {
-                postBody.value = `${beforeText}[size=${fontSize}]${selectedText}[/size]${afterText}`;
-                postBody.setSelectionRange(start + fontSize.length + 7, end + fontSize.length + 7);
-                postBody.focus();
-            }
-        });
-    });
-});}
+    async function loadMembers(membersElem, memberUIDs) {
+        if (!memberUIDs || memberUIDs.length === 0) {
+            membersElem.innerHTML = "<li>No members yet</li>";
+            return;
+        }
+        // get members usernames
+        const membersList = await Promise.all(
+            memberUIDs.map(async (uid) => {
+                try {
+                    const userSnap = await getDoc(doc(db, "users", uid));
+                    if (userSnap.exists()) {
+                        const userData = userSnap.data();
+                        const profilePic = userData.profilePic || "/images/default-picture.png";
+                        return `
+                            <li class="d-flex align-items-center my-2">
+                                <img src="${profilePic}" class="rounded-circle me-2" width="30" height="30">
+                                <a href="/u/${userData.username}" class="text-white">${userData.username}</a>
+                            </li>`;
+                    }
+                } catch (error) {
+                    console.error(`Error fetching user ${uid}:`, error);
+                }
+                return "Unknown User";
+            })
+        );
+        // populate members list, plus count
+        memCountElem.innerHTML =
+            `<strong>Members:</strong> ${memberUIDs.length}`;
+        membersElem.innerHTML = membersList.join("");
+    }
+});

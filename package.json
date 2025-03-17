@@ -1,7 +1,13 @@
 {
   "type": "module",
   "dependencies": {
-    "firebase": "^11.4.0"
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "compressorjs": "^1.2.1",
+    "firebase": "^11.4.0",
+    "firebase-admin": "^13.2.0",
+    "gsap": "^3.12.7",
+    "lz-string": "^1.5.0",
+    "material-icons": "^1.13.14"
   },
   "scripts": {
     "dev": "vite",
@@ -9,6 +15,7 @@
     "start": "npx live-server dist"
   },
   "devDependencies": {
+    "terser": "^5.39.0",
     "vite": "^6.2.1"
   }
 }

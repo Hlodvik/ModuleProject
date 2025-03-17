@@ -1,69 +1,97 @@
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthProvider, onAuthStateChanged, signOut } from "firebase/auth";
-import {auth} from "./auth.js";
+async function loadAuthProviders() {
+    const { OAuthProvider, GoogleAuthProvider, getAuth } = await import("firebase/auth");
+    return {
+        auth: getAuth(),
+        appleProvider: new OAuthProvider("apple.com"),
+        googleProvider: new GoogleAuthProvider()
+    };
+}
 
-const appleProvider = new OAuthProvider('apple.com');
-const googleProvider = new GoogleAuthProvider();
+document.addEventListener("DOMContentLoaded", async function () {
+    const { auth, appleProvider, googleProvider } = await loadAuthProviders();
 
-onAuthStateChanged(auth, (user) => {//Index is only viewable if you are not logged in. in case you are logged in already and open up the root page, be redirected to home
-    if (user) {
-        const currentPage = window.location.pathname;
-        console.log("Logged in as UID:", user.uid);
-        if (currentPage === "/index.html" || currentPage === "/") {
-            window.location.href = "/html/home.html";
-        }
-    }
+    document.querySelector("#loginButton")?.addEventListener("click", () => login(auth));
+    document.querySelector("#googleLoginButton")?.addEventListener("click", () => loginWithGoogle(auth, googleProvider));
+    document.querySelector("#appleLoginButton")?.addEventListener("click", () => loginWithApple(auth, appleProvider));
 });
 
-async function login() {
-    let email = document.getElementById("loginEmail").value;
-    let password = document.getElementById("loginPassword").value;
-    //on succesful login, be redirected to home page
+async function login(auth) {
+    const emailInput = document.getElementById("loginEmail");
+    const passwordInput = document.getElementById("loginPassword");
+    const errorMessage = document.getElementById("loginError");
+
+    if (!emailInput || !passwordInput || !errorMessage) {
+        console.error("Login elements not found.");
+        return;
+    }
+
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
+    if (!email || !password) {
+        errorMessage.textContent = "Please enter both email and password.";
+        return;
+    }
+
     try {
+        const { signInWithEmailAndPassword } = await import("firebase/auth");
         await signInWithEmailAndPassword(auth, email, password);
-    } catch (error) {//give the function something to do if failure
-        console.error("Login failed:", error.message);
-        alert("Invalid email or password.");
+        window.location.href = "/html/home.html";
+    } catch (error) {
+        handleLoginError(errorMessage, error);
     }
 }
 
-async function loginWithGoogle() {
+async function loginWithGoogle(auth, googleProvider) {
     try {
+        const { signInWithPopup } = await import("firebase/auth");
         const result = await signInWithPopup(auth, googleProvider);
         console.log("User signed in:", result.user);
-        // Redirect or handle post-login logic
+        window.location.href = "/html/home.html";
     } catch (error) {
-        console.error("Google login failed:", error.message);
+        handleLoginError(document.getElementById("loginError"), error);
     }
 }
 
-
-async function loginWithApple() {
+async function loginWithApple(auth, appleProvider) {
     try {
+        const { signInWithPopup } = await import("firebase/auth");
         const result = await signInWithPopup(auth, appleProvider);
         console.log("User signed in:", result.user);
-        // Redirect or handle post-login logic
+        window.location.href = "/html/home.html";
     } catch (error) {
-        console.error("Apple login failed:", error.message);
+        handleLoginError(document.getElementById("loginError"), error);
     }
 }
 
-function logout() {
-    signOut(auth).then(() => {  
+export async function logout() {
+    try {
+        const { signOut, getAuth } = await import("firebase/auth");
+        const auth = getAuth();
+        await signOut(auth);
         window.location.href = "/index.html";
-    }).catch((error) => {
-        alert("Error logging out: " + error.message);
-    });
+    } catch (error) {
+        console.error("Error logging out:", error);
+    }
 }
 
+// Handles Firebase authentication errors
+function handleLoginError(errorElement, error) {
+    console.error("Login failed:", error.message);
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector("#loginButton")?.addEventListener("click", login);
-    document.querySelector("#googleLoginButton")?.addEventListener("click", loginWithGoogle);
-    document.querySelector("#appleLoginButton")?.addEventListener("click", loginWithApple);
-    document.querySelector("#logoutButton")?.addEventListener("click", logout);
-});
+    let errorMessage = "An error occurred. Please try again.";
 
+    if (error.code === "auth/user-not-found") {
+        errorMessage = "User not found.";
+    } else if (error.code === "auth/wrong-password") {
+        errorMessage = "Incorrect password.";
+    } else if (error.code === "auth/invalid-email") {
+        errorMessage = "Invalid email format.";
+    } else if (error.code === "auth/popup-closed-by-user") {
+        errorMessage = "Login canceled.";
+    }
 
-
-
- 
+    if (errorElement) {
+        errorElement.textContent = errorMessage;
+    }
+}

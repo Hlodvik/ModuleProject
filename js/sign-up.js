@@ -1,78 +1,144 @@
-import {createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, OAuthProvider } from "firebase/auth";
-import {auth} from "./auth.js";
-//all of the signing up functions that are used only in index.html
-
-if (document.readyState === "loading") {
-
-    async function addUserToIndex(userId, username) {
-        await setDoc(doc(db, "searchIndex", userId), {
-            name: username.toLowerCase(),
-            type: "user",
-            refId: userId
-        });
-    }
-//async because that is what the web said to do for functions that have to do  with crud functions that work with the db
-async function signup() {
-    let email = document.getElementById("signupEmail").value;
-    let username = document.getElementById("signupUsername").value.trim(); // Get username from input
-    let password = document.getElementById("signupPassword").value;
-    let confirmPassword = document.getElementById("confirmPassword").value;
-
-    if (!email || !username || !password || !confirmPassword) {
-        alert("Please fill out all fields.");
-        return;
-    }
-    if (password !== confirmPassword) {
-        alert("Passwords do not match.");
-        return;
-    }
-
-    try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-        const userId = userCredential.user.uid;
-
-        // Store user data in Firestore
-        await setDoc(doc(db, "users", userId), {
-            username: username,
-            email: email
-        });
-
-        // Add to searchIndex for search functionality
-        await addUserToIndex(userId, username);
-
-        document.getElementById("signupForm").reset();
-        new bootstrap.Modal(document.getElementById('signupModal')).hide();
-    } catch (error) {
-        alert(error.message);
-    }
-}
-//both this and the apple signup where also provided by firebase
-async function signupGoogle() {
-    const provider = new GoogleAuthProvider();
-    try {
-        const userCredential = await signInWithPopup(auth, provider);
-        alert(`Signed up as ${userCredential.user.displayName}`);
-        new bootstrap.Modal(document.getElementById('signupModal')).hide();
-    } catch (error) {
-        alert(error.message);
-    }
-}
-
-async function signupApple() {
-    const provider = new OAuthProvider('apple.com');
-    try {
-        const userCredential = await signInWithPopup(auth, provider);
-        alert(`Signed up as ${userCredential.user.displayName}`);
-        new bootstrap.Modal(document.getElementById('signupModal')).hide();
-    } catch (error) {
-        alert(error.message);
-    }
-}
+ import { auth, db } from "./auth.js"
+import { createUserWithEmailAndPassword, signInWithPopup, OAuthProvider, GoogleAuthProvider } from "firebase/auth"
+import { collection, query, where, getDocs, doc, setDoc, getDoc, writeBatch } from "firebase/firestore"
+ 
  
 
-    document.addEventListener("DOMContentLoaded", function () {
-    // Signup Buttons
-    document.querySelector("#signupButton")?.addEventListener("click", signup);
-    document.querySelector("#googleSignupButton")?.addEventListener("click", signupGoogle);
-    document.querySelector("#appleSignupButton")?.addEventListener("click", signupApple);
-});}
+    const signupForm = document.getElementById("signupForm");
+    signupForm?.addEventListener("submit", handleSignup);
+
+    async function handleSignup(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("signupEmail");
+        const displayName = document.getElementById("signupDisplayName");
+        const username = document.getElementById("signupUsername");
+        const password = document.getElementById("signupPassword");
+        const confirmPassword = document.getElementById("confirmPassword");
+
+        const emailError = document.getElementById("emailError");
+        const displayNameError = document.getElementById("displayNameError");
+        const usernameError = document.getElementById("usernameError");
+        const passwordError = document.getElementById("passwordError");
+        const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+        [emailError, displayNameError, usernameError, passwordError, confirmPasswordError].forEach(error => error.textContent = "");
+
+        let valid = true;
+
+        if (!email.value.trim()) {
+            emailError.textContent = "Email is required.";
+            valid = false;
+        }
+        if (!displayName.value.trim()) {
+            displayNameError.textContent = "Display name is required.";
+            valid = false;
+        }
+        if (!username.value.trim()) {
+            usernameError.textContent = "Username is required.";
+            valid = false;
+        } else if (!/^[a-zA-Z0-9_-]+$/.test(username.value.trim())) {
+            usernameError.textContent = "Username can only contain letters, numbers, dashes (-), and underscores (_).";
+            valid = false;
+        }
+        if (!password.value) {
+            passwordError.textContent = "Password is required.";
+            valid = false;
+        }
+        if (!confirmPassword.value) {
+            confirmPasswordError.textContent = "Please confirm your password.";
+            valid = false;
+        }
+        if (password.value && confirmPassword.value && password.value !== confirmPassword.value) {
+            confirmPasswordError.textContent = "Passwords do not match.";
+            valid = false;
+        }
+
+        if (!valid) return;
+
+        try {
+            const usersRef = collection(db, "users");
+            const q = query(usersRef, where("username", "==", username.value.trim()));
+            const querySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                usernameError.textContent = "Username is already taken.";
+                return;
+            }
+
+            const userCredential = await createUserWithEmailAndPassword(auth, email.value.trim(), password.value);
+            const userId = userCredential.user.uid;
+
+            await storeUserProfile(userId, displayName.value.trim(), username.value.trim(), email.value.trim());
+            console.log("User successfully registered.");
+            closeSignupModal();
+        } catch (error) {
+            console.error("Error during signup:", error);
+            emailError.textContent = "Signup failed. Please try again.";
+        }
+    }
+
+    async function storeUserProfile(userId, displayName, username, email) {
+        const userRef = doc(db, "users", userId);
+        const usernameRef = doc(db, "usernames", username);
+        const searchIndexRef = doc(db, "searchIndex", userId);
+
+        const userDoc = await getDoc(userRef);
+        let userPostID = userDoc.exists() && userDoc.data().userPostID 
+            ? userDoc.data().userPostID 
+            : await generateUserPostID();
+
+        const batch = writeBatch(db);
+        batch.set(userRef, { displayName, username, email, userPostID }, { merge: true });
+        batch.set(usernameRef, { uid: userId, username });
+        batch.set(searchIndexRef, { name: displayName.toLowerCase(), type: "user", refId: userId });
+
+        await batch.commit();
+    }
+
+    async function generateUserPostID() {
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        let postID;
+        let isUnique = false;
+
+        while (!isUnique) {
+            postID = Array.from({ length: 5 }, () => characters[Math.floor(Math.random() * characters.length)]).join("");
+            const docRef = doc(db, "userPostIDs", postID);
+            const docSnap = await getDoc(docRef);
+            isUnique = !docSnap.exists();
+        }
+
+        await setDoc(doc(db, "userPostIDs", postID), { assigned: true });
+        return postID;
+    }
+
+    async function signupGoogle(provider) {
+        try {
+            const userCredential = await signInWithPopup(auth, provider);
+            const user = userCredential.user;
+            await storeUserProfile(user.uid, user.displayName || "Google User", user.email);
+            closeSignupModal();
+        } catch (error) {
+            console.error("Google Signup Error:", error);
+        }
+    }
+
+    async function signupApple(provider) {
+        try {
+            const userCredential = await signInWithPopup(auth, provider);
+            const user = userCredential.user;
+            await storeUserProfile(user.uid, user.displayName || "Apple User", user.email);
+            closeSignupModal();
+        } catch (error) {
+            console.error("Apple Signup Error:", error);
+        }
+    }
+
+    function closeSignupModal() {
+        const signupModal = document.getElementById("signupModal");
+        if (signupModal) {
+            const modalInstance = bootstrap.Modal.getInstance(signupModal) || new bootstrap.Modal(signupModal);
+            modalInstance.hide();
+        }
+    }
+ 

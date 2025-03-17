@@ -69,3 +69,9 @@ node_modules/
 .dataconnect
 
 layout.html
+migrate.js
+projectsignupapi-firebase-adminsdk-fbsvc-1c5357ffa1.json
+projectsignupapi-firebase-adminsdk-fbsvc-a04eca9521.json
+
+firestore_export/
+firebase-debug.log*

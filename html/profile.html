@@ -1,103 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - Readit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/style.css" rel="stylesheet">
-    <link rel="icon" type="image/svg+xml" href="../assets/readiticon.svg">
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="module" src="../js/main.js" defer></script>
+    <script type="module" src="/js/main.js" defer></script>
+    <script type="module" src="/js/profile-pic.js" defer></script>
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark px-3 w-100">
+    <!-- Navbar  -->
+    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
-            <img src="../assets/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
+            <img src="../images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
             <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
-            style="text-decoration:none">
-            <g style="fill: white">
-                <!-- r -->
-                <path
-                    d="M66,96c0-29,20-52,50-52s47,20,47,48c0,5-1,10-2,14h-68c3,11,12,19,26,19c8,0,19-3,24-7l9,22c-9,6-22,9-33,9c-32,0-54-21-54-52Zm27-9h43c0-13-9-20-20-20c-12,0-21,8-23,20Z">
-                </path>
-                <!-- e -->
-                <path
-                    d="M72,46l-12,29c-1-1-5-2-9-2s-7,1-10,2c-6,3-11,10-11,19v52H-1V45h29v14h1c7-9,17-16,31-16c5,0,10,1,12,2Z">
-                </path>
-                <!-- a -->
-                <path
-                    d="M246,43v12h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V43h-30Zm1,80h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z" />
-                <!-- d -->
-                <path
-                    d="M360,1v54h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V1h-30Zm1,121h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z">
-                </path>
-                <!-- i -->
-                <path d="M420,0c10,0,18,8,18,18s-8,18-18,18s-18-8-18-18S410,0,420,0Zm15,148h-30V45h30v103Z">
-                </path>
-                <!-- t -->
-                <path d="M498,45h22v25h-25v76h-30v-76h-22v-25h22v-28h30v28Z"></path>
-            </g>
-        </svg>  
+                style="text-decoration:none">
+                <g style="fill: white">
+                    <!-- r -->
+                    <path
+                        d="M66,96c0-29,20-52,50-52s47,20,47,48c0,5-1,10-2,14h-68c3,11,12,19,26,19c8,0,19-3,24-7l9,22c-9,6-22,9-33,9c-32,0-54-21-54-52Zm27-9h43c0-13-9-20-20-20c-12,0-21,8-23,20Z">
+                    </path>
+                    <!-- e -->
+                    <path
+                        d="M72,46l-12,29c-1-1-5-2-9-2s-7,1-10,2c-6,3-11,10-11,19v52H-1V45h29v14h1c7-9,17-16,31-16c5,0,10,1,12,2Z">
+                    </path>
+                    <!-- a -->
+                    <path
+                        d="M246,43v12h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V43h-30Zm1,80h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z" />
+                    <!-- d -->
+                    <path
+                        d="M360,1v54h-1c-8-8-17-11-29-11c-29,0-48,23-48,52s18,52,47,52c12,0,24-4,31-14h1v12h28V1h-30Zm1,121h-1l-7-7c-4,4-10,7-17,7c-15,0-25-12-25-27s10-27,25-27s25,12,25,27v27Z">
+                    </path>
+                    <!-- i -->
+                    <path d="M420,0c10,0,18,8,18,18s-8,18-18,18s-18-8-18-18S410,0,420,0Zm15,148h-30V45h30v103Z">
+                    </path>
+                    <!-- t -->
+                    <path d="M498,45h22v25h-25v76h-30v-76h-22v-25h22v-28h30v28Z"></path>
+                </g>
+            </svg>
         </a>
+        <!-- search bar -->
         <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
             <div class="input-group">
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>
                 </span>
-                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" 
-                       type="search" placeholder="Search Users or Communities" 
-                       aria-label="Search" id="searchInput">
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
+                    placeholder="Search Users or Communities" aria-label="Search" id="searchInput">
             </div>
             <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
         </form>
+        <!--dropdown -->
         <div class="dropdown ms-auto">
-            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                <img id="profilePic" src="../assets/default-picture.png" alt="Profile Picture" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
             </button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
-                <li><a class="dropdown-item text-white" href="/html/profile.html"><i class="bi bi-person me-2"></i> View Profile</a></li>
-                <li><a class="dropdown-item text-white" href="/html/settings.html"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                <li><a class="dropdown-item text-white" id="homeBtn"><i class="bi bi-house me-2"></i> Home</a></li>
+                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View Profile</a></li>
+                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item text-danger" href="/index.html" id="logoutButton">
-                    <i class="bi bi-box-arrow-right me-2"></i> Logout
-                </a></li>
+                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-3 col-lg-2 border-end border-secondary vh-100">
-                <div class="sidebar">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="home.html">
-                                <i class="bi bi-house-door me-2"></i> Home
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="popular.html">
-                                <i class="bi bi-fire me-2"></i> Popular
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="explore.html">
-                                <i class="bi bi-compass me-2"></i> Explore
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+  
             <main class="col-md-9 col-lg-10 px-md-4">
                 <div class="container mt-4 cn">
                     <div class="row">
                         <!-- Left: Profile Picture & Details -->
                         <div class="col-md-4 text-center">
-                            <img id="profilePic" class="rounded-circle border" alt="User Profile Picture" width="250" height="250" onerror="this.src='../assets/default-picture.png'">
+                            <img id="profilePic" class="rounded-circle border" width="150"
+                                height="150">
                             <h2 id="username" class="text-white mt-3"></h2>
-                            <p id="userPronouns" class="text-secondary"></p>
-                            <p id="userLocation" class="text-secondary"></p>
+                            <p id="userPronouns" class="text-white"></p>
+                            <p id="userLocation" class="text-white"></p>
 
                             <button id="followButton" class="btn btn-primary mt-3 d-none">Follow</button>
                         </div>
@@ -105,14 +91,18 @@
                         <div class="col-md-8 d-flex flex-column justify-content-between h-100">
                             <div class="social-links mt-3 d-flex justify-content-center gap-4">
 
-                            <div class="social-links text-start">
-                                <p><i class="bi bi-linkedin fs-5"></i> <a id="linkedin" href="#" class="text-white" target="_blank"></a></p>
-                                <p><i class="bi bi-github fs-5"></i> <a id="github" href="#" class="text-white" target="_blank"></a></p>
-                            </div>
-                            <div class="social-links text-start">
-                                <p><i class="bi bi-instagram fs-5"></i> <a id="instagram" href="#" class="text-white" target="_blank"></a></p>
-                                <p><i class="bi bi-twitter fs-5"></i> <a id="x" href="#" class="text-white" target="_blank"></a></p>
-                            </div>
+                                <div class="social-links text-start">
+                                    <p><i class="bi bi-linkedin fs-5"></i> <a id="linkedin" href="#" class="text-white"
+                                            target="_blank"></a></p>
+                                    <p><i class="bi bi-github fs-5"></i> <a id="github" href="#" class="text-white"
+                                            target="_blank"></a></p>
+                                </div>
+                                <div class="social-links text-start">
+                                    <p><i class="bi bi-instagram fs-5"></i> <a id="instagram" href="#"
+                                            class="text-white" target="_blank"></a></p>
+                                    <p><i class="bi bi-twitter fs-5"></i> <a id="twitter" href="#" class="text-white"
+                                            target="_blank"></a></p>
+                                </div>
                             </div>
                             <p id="userBio" class="text-white"></p>
                             <div class="d-flex justify-content-center gap-2 mt-3">
@@ -124,7 +114,7 @@
                     <!-- User Activity Section -->
                     <div class="user-activity mt-4 vh-100 border border-secondary">
                         <h3 class="text-white text-center">Activity</h3>
-                        <div id="userActivity" class="text-white mt-3">
+                        <div id="userFeed" class="text-white mt-3">
                             <p class="text-secondary text-center">Loading activity...</p>
                         </div>
                     </div>
@@ -136,4 +126,5 @@
     <script type="module" src="../js/main.js"></script>
     <script type="module" src="../js/profile.js"></script>
 </body>
+
 </html>

@@ -4,6 +4,12 @@ import { resolve } from "path";
 export default defineConfig({
   root: ".",
   build: {
+    minify: "terser",  
+    terserOptions: {
+      format: {
+        comments: false, 
+      }
+    },
     outDir: "dist",
     emptyOutDir: true,
     rollupOptions: {
@@ -14,16 +20,21 @@ export default defineConfig({
         settings: resolve(__dirname, "html/settings.html"),
         adminDashboard: resolve(__dirname, "html/admin-dashboard.html"),
         community: resolve(__dirname, "html/community.html"),
+        post: resolve(__dirname, "html/post.html"),
+        explore: resolve(__dirname, "html/explore.html"),
       },
       output: {
         entryFileNames: "assets/[name].js",
-        chunkFileNames: "assets/[name].js",
+        chunkFileNames: "assets/[name]-chunk.js",
         assetFileNames: "assets/[name][extname]",
-      },
-    },
+        manualChunks: { 
+           firebase: ['firebase/auth', 'firebase/firestore', 'firebase/storage']
+        }
+      }
+    }
   },
   publicDir: "public",
   server: {
     open: true
-    }
+  }
 });

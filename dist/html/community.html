@@ -5,20 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community</title>
-    <link rel="icon" type="image/svg+xml" href="/assets/readiticon.svg">
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-
-  <script type="module" crossorigin src="/assets/main2.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+  <script type="module" crossorigin src="/assets/community.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/firebase-chunk.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-chunk.js">
   <link rel="stylesheet" crossorigin href="/assets/main.css">
 </head>
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark px-3 w-100">
+    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
-            <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20216%20216'%3e%3cdefs%3e%3c!--%20Gradient%20Definitions%20--%3e%3cradialGradient%20id='snoo-main-gradient'%20cx='50%25'%20cy='50%25'%20r='50%25'%3e%3cstop%20offset='0%25'%20stop-color='%23feffff'/%3e%3cstop%20offset='80%25'%20stop-color='%23d8dbe2'/%3e%3cstop%20offset='100%25'%20stop-color='%23bfcdd6'/%3e%3c/radialGradient%3e%3cradialGradient%20id='snoo-dark-gradient'%20cx='50%25'%20cy='50%25'%20r='50%25'%3e%3cstop%20offset='0%25'%20stop-color='%23172e35'/%3e%3cstop%20offset='100%25'%20stop-color='%23000'/%3e%3c/radialGradient%3e%3c/defs%3e%3c!--%20Speech%20bubble%20--%3e%3cpath%20fill='%23FF4500'%20d='M108,0%20C48.35,0,0,48.35,0,108%20c0,29.82,12.09,56.82,31.63,76.37l-20.57,20.57%20c-4.08,4.08-1.19,11.06,4.58,11.06h92.36%20c59.65,0,108-48.35,108-108%20C216,48.35,167.65,0,108,0%20Z'/%3e%3c!--%20Cat%20ears%20--%3e%3cpath%20fill='url(%23snoo-main-gradient)'%20d='M153,75%20Q163,65%20173,75%20Q183,85%20183,100%20Q183,115%20173,120%20Q163,125%20153,120%20Q143,115%20143,100%20Q143,85%20153,75%20Z'/%3e%3cpath%20fill='url(%23snoo-main-gradient)'%20d='M67,75%20Q57,65%2047,75%20Q37,85%2037,100%20Q37,115%2047,120%20Q57,125%2067,120%20Q77,115%2077,100%20Q77,85%2067,75%20Z'/%3e%3c!--%20Head%20--%3e%3cellipse%20cx='108.06'%20cy='128.64'%20rx='72'%20ry='54'%20fill='url(%23snoo-main-gradient)'/%3e%3c!--%20Eyes%20--%3e%3cpath%20fill='%23FF4500'%20d='M86.78,123.48c-.42,9.08-6.49,12.38-13.56,12.38s-12.46-4.93-12.04-14.01%20c.42-9.08,6.49-15.02,13.56-15.02s12.46,7.58,12.04,16.66Z'/%3e%3cpath%20fill='%23FF4500'%20d='M129.35,123.48c.42,9.08,6.49,12.38,13.56,12.38s12.46-4.93,12.04-14.01%20c-.42-9.08-6.49-15.02-13.56-15.02s-12.46,7.58-12.04,16.66Z'/%3e%3c!--%20Pupils%20--%3e%3cellipse%20cx='79.63'%20cy='116.37'%20rx='2.8'%20ry='3.05'%20fill='%23c1c1c1a7'/%3e%3cellipse%20cx='146.21'%20cy='116.37'%20rx='2.8'%20ry='3.05'%20fill='%23c1c1c1a7'/%3e%3c!--%20Mouth%20--%3e%3cpath%20fill='url(%23snoo-dark-gradient)'%20d='M92.25,133h32.5c1.07,0,1.95,0.88,1.95,1.95v6.5c0,9.75-7.8,17.55-18.2,17.55s-18.2-7.8-18.2-17.55v-6.5%20c0-1.07,0.88-1.95,1.95-1.95Z'/%3e%3c/svg%3e" class="me-2" style="height: 42px; width: auto;">
+            <img src="../images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
             <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
                 style="text-decoration:none">
                 <g style="fill: white">
@@ -50,9 +51,8 @@
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>
                 </span>
-                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" 
-                       type="search" placeholder="Search Users or Communities" 
-                       aria-label="Search" id="searchInput">
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
+                    placeholder="Search Users or Communities" aria-label="Search" id="searchInput">
             </div>
             <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
         </form>
@@ -61,20 +61,19 @@
         <div class="dropdown ms-auto">
             <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
                 data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="/assets/default-picture.png" alt="Profile Picture" class="rounded-circle"
-                    style="height: 35px; width: 35px; object-fit: cover;">
+                <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
             </button>
             <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
-                <li><a class="dropdown-item text-white" href="/html/profile.html"><i class="bi bi-person me-2"></i> View
+                <li><a class="dropdown-item text-white" id="homeBtn"><i class="bi bi-house me-2"></i> Home</a></li>
+                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View
                         Profile</a></li>
-                <li><a class="dropdown-item text-white" href="/html/settings.html"><i class="bi bi-gear me-2"></i>
-                        Settings</a></li>
+                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a>
+                </li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item text-danger" href="/index.html" id="logoutButton">
-                        <i class="bi bi-box-arrow-right me-2"></i> Logout
-                    </a></li>
+                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>
+                        Logout</a></li>
             </ul>
         </div>
     </nav>
@@ -85,17 +84,17 @@
                 <div class="sidebar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="home.html">
+                            <a class="nav-link text-white" href="/html/home.html">
                                 <i class="bi bi-house-door me-2"></i> Home
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="popular.html">
+                            <a class="nav-link text-white" href="/html/popular.html">
                                 <i class="bi bi-fire me-2"></i> Popular
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="explore.html">
+                            <a class="nav-link text-white" href="/html/explore.html">
                                 <i class="bi bi-compass me-2"></i> Explore
                             </a>
                         </li>
@@ -107,19 +106,18 @@
             <main class="col-md-7 px-md-4">
                 <!-- Community Banner -->
                 <div class="position-relative">
-                    <img src="../assets/default-banner.jpg" class="w-100"
-                        style="height: 200px; object-fit: cover; margin-top: 2rem;">
-                    <img src="/assets/default-pic.jpg" class="position-absolute copp"
+                    <img id="banner" class="w-100" style="height: 35vh; object-fit: cover; margin-top: 2rem;">
+                    <img id="communityPic" class="position-absolute z-50"
                         style="bottom: -30px; left: 20px; height: 80px; width: 80px; border-radius: 50%; border: 3px solid white;">
                 </div>
 
                 <!-- Community Name -->
                 <div class="mt-4">
-                    <h2 id="communityName" class="text-white">Community Name</h2>
+                    <h2 id="communityName" class="text-white"></h2>
                 </div>
 
                 <!-- Posts Section -->
-                <div id="communityPosts" class="mt-3">
+                <div id="communityFeed" class="text-white mt-3">
                     <!-- Posts will be dynamically added here -->
                 </div>
             </main>
@@ -127,25 +125,29 @@
             <!-- Right-Side Menu -->
             <aside class="col-md-3" style="margin-top:3em;">
                 <div class="card bg-dark text-white border-secondary p-3">
-                    <img src="/assets/default-pic.jpg" class="rounded-circle mx-auto d-block"
-                        style="height: 80px; width: 80px;">
+
                     <div class="d-flex justify-content-center gap-2 mt-3">
-                        <button class="btn btn-sm btn-primary">Join Community</button>
-                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPostModal">
-                            Create Post
-                        </button>
+                        <button id="join" class="btn btn-sm custom-btn-orange">Join Community</button>
+                        <button class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#createPostModal">Create Post</button>
                     </div>
                     <hr>
-                    <p id="communityBio" class="text-secondary">Community bio goes here...</p>
+                    <p id="bio" class="text-secondary"> </p>
                     <h6>Admins</h6>
-                    <ul id="communityAdmins" class="list-unstyled text-secondary">
-                        <li> </li>
+                    <ul class="list-unstyled text-secondary">
+                        <li id="admins" class="mb-4"> </li>
+                        <button class="btn btn-sm btn-outline-light w-100">Message Admin</button>
+                        <hr class="dropdown-divider">
                     </ul>
-                    <button class="btn btn-sm btn-outline-light w-100">Message Admin</button>
+                    <h6 id="memCount"></h6>
+                    <ul class="list-unstyled text-secondary">
+                        <li id="members"> </li>
+                    </ul>
                 </div>
             </aside>
         </div>
     </div>
+
     <!-- Create Post Modal -->
     <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel"
         aria-hidden="true">
@@ -156,45 +158,45 @@
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
                         aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <!-- Post Title -->
-                    <input type="text" id="postTitle" class="form-control bg-secondary text-white mb-3"
-                        placeholder="Title" maxlength="300">
 
-                    <!-- Toolbar for text editing -->
-                    <!-- Formatting Buttons -->
-                    <div class="d-flex gap-2 mt-2">
-                        <button class="btn btn-outline-light btn-sm" id="boldBtn"><b>B</b></button>
-                        <button class="btn btn-outline-light btn-sm" id="italicBtn"><i>I</i></button>
+                <!-- Ensure the form wraps everything properly -->
+                <form id="postForm">
+                    <div class="modal-body">
+                        <!-- Post Title -->
+                        <input type="text" id="postTitle" class="form-control bg-secondary text-white mb-3"
+                            placeholder="Title" maxlength="300">
 
-                        <!-- Font Size Dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-outline-light btn-sm dropdown-toggle" id="fontSizeBtn"
-                                data-bs-toggle="dropdown">
-                                <i class="bi bi-type"></i>
+                        <!-- Toolbar for text editing -->
+                        <div class="d-flex gap-2 mt-2">
+                            <button type="button" class="btn btn-outline-light btn-sm" id="boldBtn"><b>B</b></button>
+                            <button type="button" class="btn btn-outline-light btn-sm" id="italicBtn"><i>I</i></button>
+
+                            <!-- Font Size Dropdown -->
+                            <div class="dropdown">
+                                <button type="button" class="btn btn-outline-light btn-sm dropdown-toggle" id="fontSizeBtn" data-bs-toggle="dropdown">
+                                    <i class="bi bi-type"></i>
+                                </button>
+                                <ul class="dropdown-menu" id="fontSizeDropdown">
+                                    <!-- Font sizes will be added dynamically -->
+                                </ul>
+                            </div>
+                            <button type="button" class="btn btn-outline-light btn-sm" id="addMediaBtn">
+                                <i class="bi bi-image"></i>
                             </button>
-                            <ul class="dropdown-menu">
-                                <!-- Generate font sizes dynamically with JS -->
-                            </ul>
                         </div>
-                        <button class="btn btn-outline-light btn-sm" id="addMediaBtn"><i
-                                class="bi bi-image"></i></button>
 
+                        <!-- Post Body -->
+                        
+                        <div id="postBody" class="form-control bg-secondary text-white p-2" contenteditable="true" style="min-height: 60vh; overflow-y: auto;">
+                        </div>
+                        <input type="hidden" id="hiddenPostBody" name="hiddenPostBody">
+
+                        <!-- Post Button -->
+                        <div class="d-flex justify-content-end mt-3">
+                            <button type="submit" class="btn btn-primary" id="submitPost">Post</button>
+                        </div>
                     </div>
-
-                    <!-- Post Body -->
-                    <!-- Rich text editor -->
-                    <div id="postBody" class="form-control bg-secondary text-white p-2" contenteditable="true"
-                        style="min-height: 150px; overflow-y: auto;">
-                    </div>
-
-
-
-                    <!-- Post Button -->
-                    <div class="d-flex justify-content-end mt-3">
-                        <button type="button" class="btn btn-primary" id="submitPost">Post</button>
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -208,7 +210,7 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <input type="file" id="fileInput" class="form-control mb-2">
+                    <input type="file" id="postMedia" class="form-control mb-2">
                     <input type="text" id="urlInput" class="form-control mb-2" placeholder="Paste image/video URL">
                     <div id="mediaPreview" class="text-center"></div>
                 </div>
@@ -219,343 +221,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const editor = document.getElementById("postBody");
-            const boldBtn = document.getElementById("boldBtn");
-            const italicBtn = document.getElementById("italicBtn");
-            const fontSizeMenu = document.querySelector("#fontSizeBtn + .dropdown-menu");
-            const mediaModal = new bootstrap.Modal(document.getElementById("mediaModal"));
-            const fileInput = document.getElementById("fileInput");
-            const urlInput = document.getElementById("urlInput");
-            const mediaPreview = document.getElementById("mediaPreview");
-            const insertMediaBtn = document.getElementById("insertMediaBtn");
-            let undoStack = [];
-            let redoStack = [];
-            let isTyping = false;
-            let lastSelection = null;
-
-            function applyFormatting(tag) {
-                const selection = window.getSelection();
-                if (!selection.rangeCount) return;
-
-                const range = selection.getRangeAt(0);
-                const selectedText = range.extractContents();
-                const newElement = document.createElement(tag);
-                newElement.appendChild(selectedText);
-                range.deleteContents();
-                range.insertNode(newElement);
-
-                range.setStartAfter(newElement);
-                range.collapse(true);
-                selection.removeAllRanges();
-                selection.addRange(range);
-
-                editor.focus();
-            }
-
-            function saveState() {
-                if (!isTyping) {
-                    undoStack.push(editor.innerHTML);
-                    if (undoStack.length > 50) undoStack.shift();
-                    redoStack.length = 0;
-                }
-            }
-
-            function undo() {
-                if (undoStack.length > 0) {
-                    redoStack.push(editor.innerHTML);
-                    editor.innerHTML = undoStack.pop();
-                    placeCursorAtEnd(editor);
-                }
-            }
-
-            function redo() {
-                if (redoStack.length > 0) {
-                    undoStack.push(editor.innerHTML);
-                    editor.innerHTML = redoStack.pop();
-                    placeCursorAtEnd(editor);
-                }
-            }
-
-            function placeCursorAtEnd(element) {
-                let range = document.createRange();
-                let selection = window.getSelection();
-                range.selectNodeContents(element);
-                range.collapse(false);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-
-            saveState();
-
-            [boldBtn, italicBtn].forEach(btn => {
-                btn.addEventListener("mousedown", (e) => e.preventDefault());
-            });
-
-            boldBtn.addEventListener("click", () => applyFormatting("b"));
-            italicBtn.addEventListener("click", () => applyFormatting("i"));
-
-            fontSizeMenu.addEventListener("click", (e) => {
-                if (e.target.tagName === "A") {
-                    let size = e.target.dataset.size;
-                    document.execCommand("styleWithCSS", false, true);
-                    document.execCommand("fontSize", false, "7");
-                    let fontElements = editor.querySelectorAll("font[size='7']");
-                    fontElements.forEach(el => {
-                        el.removeAttribute("size");
-                        el.style.fontSize = `${size}px`;
-                    });
-                }
-            });
-
-            fileInput.addEventListener("change", function () {
-                const file = fileInput.files[0];
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function (e) {
-                        previewMedia(e.target.result, file.type.startsWith("video"));
-                    };
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            urlInput.addEventListener("input", function () {
-                const url = urlInput.value.trim();
-                if (url) {
-                    const isVideo = /\.(mp4|webm|ogg)$/i.test(url);
-                    previewMedia(url, isVideo);
-                } else {
-                    mediaPreview.innerHTML = "";
-                    insertMediaBtn.disabled = true;
-                }
-            });
-
-            document.getElementById("addMediaBtn").addEventListener("mousedown", (e) => {
-                e.preventDefault();
-                saveSelection();
-            });
-
-            document.getElementById("addMediaBtn").addEventListener("click", () => {
-                mediaModal.show();
-            });
-
-            insertMediaBtn.addEventListener("click", insertMedia);
-
-            function saveSelection() {
-                const selection = window.getSelection();
-                if (selection.rangeCount > 0) {
-                    lastSelection = selection.getRangeAt(0);
-                }
-            }
-
-            function restoreSelection() {
-                if (lastSelection) {
-                    const selection = window.getSelection();
-                    selection.removeAllRanges();
-                    selection.addRange(lastSelection);
-                }
-            }
-
-            function previewMedia(src, isVideo) {
-                mediaPreview.innerHTML = isVideo
-                    ? `<video controls style="max-width: 100%;"><source src="${src}" type="video/mp4"></video>`
-                    : `<img src="${src}" style="max-width: 100%; height: auto;">`;
-                insertMediaBtn.disabled = false;
-            }
-
-            function insertMedia() {
-                restoreSelection();
-
-                let mediaHTML = "";
-                if (fileInput.files[0]) {
-                    const previewElement = mediaPreview.querySelector("img") || mediaPreview.querySelector("video source");
-                    if (previewElement) {
-                        const src = previewElement.getAttribute("src");
-                        mediaHTML = previewElement.tagName === "SOURCE"
-                            ? `<video controls class="resizable-media"><source src="${src}" type="video/mp4"></video>`
-                            : `<img src="${src}" class="resizable-media">`;
-                    }
-                } else if (urlInput.value.trim()) {
-                    const url = urlInput.value.trim();
-                    const isVideo = /\.(mp4|webm|ogg)$/i.test(url);
-                    mediaHTML = isVideo
-                        ? `<video controls class="resizable-media"><source src="${url}" type="video/mp4"></video>`
-                        : `<img src="${url}" class="resizable-media">`;
-                }
-
-                if (mediaHTML) {
-                    insertMediaAtCursor(mediaHTML);
-                    setTimeout(() => {
-                        document.querySelectorAll(".resizable-media").forEach(makeResizable);
-                    }, 100);
-                }
-
-                mediaModal.hide();
-                fileInput.value = "";
-                urlInput.value = "";
-                mediaPreview.innerHTML = "";
-                insertMediaBtn.disabled = true;
-            }
-
-            function insertMediaAtCursor(mediaHTML) {
-                let selection = window.getSelection();
-                let range = selection.rangeCount ? selection.getRangeAt(0) : document.createRange();
-
-                if (!selection.rangeCount) {
-                    range.selectNodeContents(editor);
-                    range.collapse(false);
-                }
-
-                let tempDiv = document.createElement("div");
-                tempDiv.innerHTML = `<p><br></p>${mediaHTML}<p><br></p>`;
-                let fragment = document.createDocumentFragment();
-
-                while (tempDiv.firstChild) {
-                    let node = tempDiv.firstChild;
-                    if (node.tagName === "IMG" || node.tagName === "VIDEO") {
-                        node.classList.add("resizable-media");
-                    }
-                    fragment.appendChild(node);
-                }
-
-                range.deleteContents();
-                range.insertNode(fragment);
-
-                range.collapse(false);
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-
-            function makeResizable(img) {
-                if (!img || !editor.contains(img)) return;
-
-                img.setAttribute("draggable", "true"); // Ensure it remains draggable
-                let isResizing = false, startX, startY, startWidth, startHeight;
-
-                img.style.cursor = "default";
-
-                img.addEventListener("mousemove", function (e) {
-                    const rect = img.getBoundingClientRect();
-                    const offset = 10;
-
-                    if (e.clientX >= rect.right - offset || e.clientY >= rect.bottom - offset) {
-                        img.style.cursor = "nwse-resize";
-                    } else {
-                        img.style.cursor = "default";
-                    }
-                });
-
-                img.addEventListener("mousedown", function (e) {
-                    if (img.style.cursor === "nwse-resize") {
-                        e.preventDefault();
-                        isResizing = true;
-                        startX = e.clientX;
-                        startY = e.clientY;
-                        startWidth = img.offsetWidth;
-                        startHeight = img.offsetHeight;
-
-                        document.addEventListener("mousemove", resize);
-                        document.addEventListener("mouseup", stopResize);
-                    }
-                });
-
-                function resize(e) {
-                    if (!isResizing) return;
-                    img.style.width = `${startWidth + (e.clientX - startX)}px`;
-                    img.style.height = `${startHeight + (e.clientY - startY)}px`;
-                }
-
-                function stopResize() {
-                    isResizing = false;
-                    document.removeEventListener("mousemove", resize);
-                    document.removeEventListener("mouseup", stopResize);
-                }
-            }
-            editor.addEventListener("dragstart", function (e) {
-                if (e.target.classList.contains("resizable-media")) {
-                    e.target.classList.add("dragging");
-                    e.dataTransfer.setData("text/html", e.target.outerHTML);
-                    setTimeout(() => e.target.style.display = "none", 0); // Hide during drag
-                }
-            });
-
-            editor.addEventListener("dragover", function (e) {
-                e.preventDefault(); // Required to allow drop
-            });
-
-            editor.addEventListener("drop", function (e) {
-                e.preventDefault();
-                let draggedElement = document.querySelector(".dragging");
-
-                if (draggedElement) {
-                    draggedElement.remove(); // Remove from old position
-
-                    let range;
-                    let selection = window.getSelection();
-
-                    if (document.caretRangeFromPoint) {
-                        range = document.caretRangeFromPoint(e.clientX, e.clientY);
-                    } else if (document.caretPositionFromPoint) {
-                        let position = document.caretPositionFromPoint(e.clientX, e.clientY);
-                        range = document.createRange();
-                        range.setStart(position.offsetNode, position.offset);
-                    }
-
-                    if (range) {
-                        selection.removeAllRanges();
-                        selection.addRange(range);
-
-                        let newMedia = document.createElement("div");
-                        newMedia.innerHTML = e.dataTransfer.getData("text/html");
-
-                        let mediaElement = newMedia.firstChild;
-                        mediaElement.classList.remove("dragging");
-                        mediaElement.style.display = "block"; // Make visible again
-
-                        range.insertNode(mediaElement);
-
-                        // Reapply resizable functionality
-                        makeResizable(mediaElement);
-                    }
-                }
-            });
-            let cursorMarker = document.createElement("span");
-            cursorMarker.id = "cursor-marker";
-            cursorMarker.innerHTML = "|"; // Visible cursor
-            cursorMarker.style.color = "red"; // Make it noticeable
-
-            editor.addEventListener("dragover", function (e) {
-                e.preventDefault(); // Allow drop
-
-                let range;
-                let selection = window.getSelection();
-
-                if (document.caretRangeFromPoint) {
-                    range = document.caretRangeFromPoint(e.clientX, e.clientY);
-                } else if (document.caretPositionFromPoint) {
-                    let position = document.caretPositionFromPoint(e.clientX, e.clientY);
-                    range = document.createRange();
-                    range.setStart(position.offsetNode, position.offset);
-                }
-
-                if (range) {
-                    selection.removeAllRanges();
-                    selection.addRange(range);
-
-                    // Remove existing marker if any
-                    let existingMarker = document.getElementById("cursor-marker");
-                    if (existingMarker) existingMarker.remove();
-
-                    // Insert the cursor marker at the drop position
-                    range.insertNode(cursorMarker);
-                }
-            });
-
-        });
-    </script>
-
 </body>
 
 </html>

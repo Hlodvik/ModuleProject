@@ -1,12 +1,7 @@
 body {
     background-color: #0e1113;
-}
-
-:root {
-    --navbar-height: 60px;
-    /* Adjust based on your actual navbar height */
-}
-
+}   
+ 
 a {
     text-decoration: none;
 }
@@ -17,7 +12,12 @@ a {
     min-height: 100vh;
 
 }
-
+.comment {
+    background-color: #161a1d;
+    color: white; 
+    padding: 1rem;
+    border-bottom: 1px solid #6c757d; 
+}
 .cn {
     display: grid;
 }
@@ -48,7 +48,7 @@ a {
     border-radius: 5px;
 }
 
-.copp{
+.z-50{
     z-index: 50;
 }
 .sidebar {
@@ -73,19 +73,28 @@ a {
     background-color: #0e1113;
 
 }
-
+.navbar ::placeholder {
+    color: white;
+}
 .navbar-brand {
     color: #ffffff;
     text-decoration: none;
 }
 
+.search-bar {
+    position: relative; /* Ensures dropdown aligns with input field */
+}
+#searchResults {
+    width: 100%;  
+    position: absolute;  
+    left: 0; /* align the dropdown with the search input */
+    z-index: 10;  
+}
 
-/* Text label separate from toggle */
 .custom-toggle-label {
     font-size: 1rem;
     color: white;
-    margin-left: 0.5em;
-    /* Spacing between toggle and text */
+    margin-left: 0.5em; 
 }
 
 /* Custom Toggle Container */
@@ -99,15 +108,14 @@ a {
     margin-bottom: 2vh;
 }
 
-/* Hide Default Checkbox */
+/* hide default */
 .custom-toggle input {
     opacity: 0;
     width: 0;
     height: 0;
     position: absolute;
 }
-
-/* Custom Toggle Background */
+ 
 .custom-toggle-slider {
     position: relative;
     width: 2.6em;
@@ -120,7 +128,7 @@ a {
     display: inline-block;
 }
 
-/* Toggle Knob (Thumb) */
+
 .custom-toggle-slider::before {
     content: "";
     position: absolute;
@@ -128,24 +136,21 @@ a {
     left: 0.2em;
     width: .9em;
     height: .9em;
-    background-color: #888;
-    /* Light gray knob when OFF */
+    background-color: #888;    /* Light gray if off */
     border-radius: 50%;
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-/* When Checked: Background Turns Orange */
+/* orange when on */
 .custom-toggle input:checked+.custom-toggle-slider {
     background-color: #ff4500 !important;
-    /* Orange when ON */
 }
 
-/* When Checked: Knob Moves & Turns Dark Gray */
 .custom-toggle input:checked+.custom-toggle-slider::before {
     transform: translateX(1.3em);
 }
 
-/* Remove Blue Highlight when Focused */
+/* remove blue highlight */
 .custom-toggle input:focus+.custom-toggle-slider {
     outline: none;
     box-shadow: none;
@@ -153,19 +158,18 @@ a {
 
 /* Change radio button selection color to #FF4500 */
 .form-check-input:checked {
-    background-color: #FF4500 !important;
+    background-color: #FF4500 !important; /* important because it is overwriting bootstrap */
     border-color: #FF4500 !important;
 }
-
-/* Optional: Make the hover effect match */
+ 
 .form-check-input:hover {
     border-color: #FF4500 !important;
 }
 
 /* Remove blue outline when focused */
 .form-check-input:focus {
-    box-shadow: 0 0 5px rgba(255, 69, 0, 0.5) !important;
-    /* Soft orange-red glow */
+    box-shadow: 0 0 5px #ff450080 !important;
+    /* glow */
     border-color: #FF4500 !important;
 }
 
@@ -176,14 +180,6 @@ a {
     padding: 10px;
     font-weight: bold;
     border-radius: 5px;
-}
-
-.dropdown-menu {
-    min-width: 200px;
-}
-
-.dropdown-item:hover {
-    background-color: #414951 !important;
 }
 
 .custom-btn-dark {
@@ -200,14 +196,19 @@ a {
     opacity: 0.8;
 }
 
-
-.navbar ::placeholder {
-    color: white;
+.dropdown-menu {
+    min-width: 200px;
 }
+
+.dropdown-item:hover {
+    background-color: #414951 !important;
+}
+
+
 
 .edit ::placeholder {
     color: #6c757d;
-    /* Light gray color */
+     
 }
 
 .input-group .input-group-text {
@@ -256,17 +257,305 @@ h1 {
     color: white;
 }
  
- /* Prevent text selection during drag */
-.draggable-media {
-    user-select: none;
-    pointer-events: none; /* Prevents accidental selection while moving */
+ 
+ 
+
+.mt-vh4{
+    margin-top: 4vh;
 }
 
-/* Disable selection for everything inside editor while dragging */
-.editor-dragging * {
-    user-select: none;
+.post-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #14171a; /* Slightly lighter than #0e1113 */
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+    transition: background 0.2s ease-in-out;
 }
 
-.navsec{
-    margin-top: 5vh;
+
+
+.vote-count {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.post-content {
+    flex-grow: 1;
+}
+
+.post-header {
+    font-size: 14px;
+    color: #b1b1b1;
+    margin-bottom: 6px;
+}
+
+.post-title {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.post-body {
+    font-size: 14px;
+    color: #d1d1d1;
+    line-height: 1.5;
+}
+
+
+
+.view-post {
+    color: #ff4500;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.view-post:hover {
+    text-decoration: underline;
+}
+.post-footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #222; /* Separates post from actions */
+}
+
+/* Voting buttons */
+.vote-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: #828282;
+    cursor: pointer;
+    transition: color 0.2s ease-in-out;
+}
+
+.vote-button:focus {
+    outline: none;
+}
+
+.active-upvote {
+    color: #ff4500 !important; /* Reddit Orange */
+}
+
+.active-downvote {
+    color: #5a8dee !important; /* Reddit Blue */
+}
+
+/* Comment and Share Icons */
+.comment-count,
+.share-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #b1b1b1;
+    cursor: pointer;
+}
+
+.comment-count i,
+.share-icon i {
+    font-size: 16px;
+}
+
+.comment-count:hover,
+.share-icon:hover {
+    color: #fff;
+}
+
+#category-container {
+    gap: 5rem;
+    position: relative;
+    display: flex;
+    width: 100%;
+    transition: all 0.5s ease;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.category-grid {
+    position: relative;
+    width: 80%;
+    text-align: center;
+}
+
+.category-card {
+    display: flex;
+    gap: 1em;
+    justify-content: center; 
+    border-style:solid;
+    border-width: 1px; 
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 1rem;
+    font-size: 1rem;
+    position: relative; 
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.category-card:hover {
+    transform: scale(1.1);
+    background-color: #343536;
+}
+
+.category-icon {
+    font-size: 2rem;  
+}
+
+/* Community Cards */
+.community-card {
+    display: flex;
+    text-align: center;
+    background-color: #414141;
+    border-radius: 10px;
+    border: #888;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.community-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px #3131311e;
+}
+
+/* Top Half - Banner & Overlay */
+.card-banner {
+    height: 50%;
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+}
+
+.card-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.card-pic {
+    width: 35%;
+    height: 35%;
+    border-radius: 50%;
+    border: .1rem solid #1a1a1b;
+}
+
+.card-name {
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+/* Bottom Half - Details */
+.card-details {
+    padding: 20px;
+}
+
+.card-bio {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 10px;
+    height: 45px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.community-tags {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.community-tag {
+    background-color: #343536;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: white;
+}
+
+/* Expanded Card */
+.expanded {
+    width: 100% !important;
+    transition: all 0.3s ease-in-out;
+}
+
+.expanded .card-banner {
+    height: 200px;
+}
+
+.expanded .card-bio {
+    white-space: normal;
+    height: auto;
+}
+
+/* for the categories */
+#close-btn {
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin-left: 1.2rem;
+    display: inline-block;
+    transition: opacity 0.5s ease;
+    z-index: 15;
+}
+
+/* for enlarged community cards */
+.card-x-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+}
+
+.expanded .card-x-btn {
+    display: block;
+}
+
+
+
+/* Sorting Dropdown */
+.sorting-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+
+.xxx {
+    font-size: 2.5rem;
+    cursor: pointer;
+    margin-left: 15px;
+    transition: opacity 0.5s ease;
+}
+
+.hc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 5rem;
+    top: 35vh;
+    transition: all 0.5s ease;
+}
+
+.hdr {
+    font-size: 2.5rem;
+    transition: all 0.5s ease;
+    text-align: center;
+    text-decoration: underline;
 }
