@@ -138,6 +138,10 @@
     background-color: #343a40;
     color: white;
 }
+.fbg{
+    background-color: #b1b1b1;
+    color: black;
+}
 .input-group .input-group-text {
     border-right: none; 
 } 
@@ -233,17 +237,22 @@
 }
 
 .search-bar {
-    position: relative; /* Ensures dropdown aligns with input field */
+    position: relative;  
 }
 #searchResults {
     width: 100%;  
     position: absolute;  
-    left: 0; /* align the dropdown with the search input */
+    left: 0; /* align the dropdown with the search bar */
     z-index: 10;  
 } 
 .dropdown-menu {
-    min-width: 200px;
+    width: inherit;
 } 
 .dropdown-item:hover {
-    background-color: #414951 !important;
+    background-color: #414951;
 } 
+.exit-btn{
+    font-size: 3rem;
+    display: flex;
+    max-width: fit-content;
+}

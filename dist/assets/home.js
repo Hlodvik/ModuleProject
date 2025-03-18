@@ -1,0 +1,1 @@
+import{a as e,f as s}from"./main-chunk.js";import{o}from"./firebase-chunk.js";import"https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js";document.addEventListener("DOMContentLoaded",(function(){o(e,(async e=>{e?await s(e.uid):console.error("No user signed in.")}))}));

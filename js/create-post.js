@@ -1,5 +1,5 @@
 import { auth, db, storage } from "./main.js";
-import { doc, getDoc, setDoc, collection, query, where, getDocs, serverTimestamp, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, getDoc, setDoc, serverTimestamp, updateDoc, arrayUnion } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -21,18 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 async function generatePostID() {
     const user = auth.currentUser;
-    if (!user) {
-        console.error("User not authenticated.");
-        return null;
-    }
-
     const pathSegments = window.location.pathname.split("/");
     const communityId = pathSegments[2];
-    if (!communityId) {
-        console.error("Community ID not found in URL.");
-        return null;
-    }
-
     const userRef = doc(db, "users", user.uid);
     const userSnap = await getDoc(userRef);
     const userPostID = userSnap.data().userPostID;
@@ -104,8 +94,7 @@ async function uploadMediaFiles(files) {
             return downloadUrl;
         });
         uploadPromises.push(uploadTask);
-    }
-
+    } 
     await Promise.all(uploadPromises);
     return mediaUrls;
 }
@@ -135,8 +124,8 @@ async function submitPost() {
       let formattedContent = postBody.innerHTML;
       mediaUrls.forEach((url) => {
         formattedContent = formattedContent.replace(
-          "[MEDIA_PLACEHOLDER]",
-          `<img src='${url}' alt='Uploaded Image'/>`
+          "[MEDIA_PLACEHOLDER]", 
+          `<img src='${url}'/>`
         );
       });
   

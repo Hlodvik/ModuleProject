@@ -65,20 +65,19 @@ async function setupJoinButton(userRef, communityRef, userId, communityUID, user
         };
         joinContainer.appendChild(joinButton);
     } else {
-        // Dropdown for "Joined"
+        // dropdown for "joined"
         joinContainer.innerHTML = `
             <div class="dropdown">
                 <button class="custom-btn-dark dropdown-toggle" id="joinedDropdown" data-bs-toggle="dropdown">
                     Joined
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="joinedDropdown">
-                    <li><a class="dropdown-item" href="#" id="favoriteCommunity">⭐ Favorite</a></li>
-                    <li><a class="dropdown-item text-danger" href="#" id="leaveCommunity">❌ Leave Community</a></li>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" role="button" id="favoriteCommunity"> Favorite</a></li>
+                    <li><a class="dropdown-item text-danger" role="button" id="leaveCommunity"> Leave Community</a></li>
                 </ul>
             </div>
         `;
-
-        // Add event listener for "Leave Community"
+ 
         document.getElementById("leaveCommunity").onclick = async () => {
             try {
                 await updateDoc(communityRef, { members: arrayRemove(userId) });
@@ -94,7 +93,7 @@ async function setupJoinButton(userRef, communityRef, userId, communityUID, user
 
         // Future implementation: Favorite Community
         document.getElementById("favoriteCommunity").onclick = () => {
-            console.log("Favorite feature can be implemented here.");
+            //favorite logic!
         };
     }
 }

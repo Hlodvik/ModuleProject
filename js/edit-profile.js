@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
         saveBtn.disabled = true;
         saveBtn.addEventListener("click", saveProfileChanges);
     }
-
     trackFormChanges();
     setupUsernameValidation();
 });

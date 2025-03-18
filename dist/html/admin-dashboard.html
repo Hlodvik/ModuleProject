@@ -5,11 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manage Communities</title>
-    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">  
-  <script type="module" crossorigin src="/assets/firebase-chunk.js"></script>
-  <script type="module" crossorigin src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"></script>
-  <script type="module" crossorigin src="/assets/main-chunk.js"></script>
-  <script type="module" crossorigin src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">  
+ 
+ 
+ 
+  <script type="module" crossorigin src="/assets/adminDashboard.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/firebase-chunk.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-chunk.js">
   <link rel="stylesheet" crossorigin href="/assets/main.css">
 </head>
 
@@ -18,8 +20,7 @@
     <nav class="navbar navbar-expand-lg border-bottom border-secondary navbar-dark px-3 w-100">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
             <img src="/images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
-            <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
-            style="text-decoration:none">
+            <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150" style="text-decoration:none">
             <g style="fill: white">
                 <!-- r -->
                 <path
@@ -44,25 +45,22 @@
             </g>
         </svg> 
         </a>
-        <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
+        <form class="d-flex mx-auto search-bar w-50 justify-content-center">
             <div class="input-group">
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>
                 </span>
-                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" 
-                       type="search" placeholder="Search Users or Communities" 
-                       aria-label="Search" id="searchInput">
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search" placeholder="Search Users or Communities" id="searchInput">
             </div>
             <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
         </form>
 
         <!-- Navbar dropdown -->
         <div class="dropdown ms-auto">
-            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
-                data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu" data-bs-toggle="dropdown">
                 <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
             </button>
-            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary">
                 <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View Profile</a></li>
                 <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a></li>
                 <li><hr class="dropdown-divider"></li>
@@ -146,39 +144,37 @@
     </div>
 
     <!-- Create Community Modal -->
-    <div class="modal fade" id="createCommunityModal" tabindex="-1" aria-labelledby="createCommunityModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="createCommunityModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content bg-dark text-white">
                 <div class="modal-header border-secondary">
                     <h5 class="modal-title" id="createCommunityModalLabel">Create New Community</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="createCommunityForm">
                         <div class="mb-3">
-                            <label for="communityName" class="form-label">Community Name</label>
+                            <label class="form-label">Community Name</label>
                             <input type="text" class="form-control bg-secondary text-white" id="communityName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="subdomain" class="form-label">Subdomain (e.g., yourcommunity)</label>
+                            <label class="form-label">Subdomain (e.g., yourcommunity)</label>
                             <input type="text" class="form-control bg-secondary text-white" id="subdomain"
                             pattern="[a-zA-Z0-9_\-]+"
                             title="Only letters, numbers, underscores, and hyphens are allowed"
                             required>
                         </div>
                         <div class="mb-3">
-                            <label for="communityBio" class="form-label">Community Bio</label>
+                            <label class="form-label">Community Bio</label>
                             <textarea class="form-control bg-secondary text-white" id="communityBio" rows="3"
                                 required></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="communityImage" class="form-label">Community Image</label>
+                            <label class="form-label">Community Image</label>
                             <input type="file" class="form-control" id="communityImage" accept="image/*">
                         </div>
                         <div class="mb-3">
-                            <label for="communityBanner" class="form-label">Community Banner</label>
+                            <label class="form-label">Community Banner</label>
                             <input type="file" class="form-control" id="communityBanner" accept="image/*">
                         </div>
                         <button type="submit" class="btn custom-btn-orange w-50" id="createCommunityBtn">Create

@@ -8,30 +8,24 @@ if (signupForm) {
 } else {
     console.error("Signup form not found in the DOM.");
 }
-
+ 
 async function handleSignup(event) {
     event.preventDefault();
 
-    const email = document.getElementById("signupEmail");
-    const displayName = document.getElementById("signupDisplayName");
+    const email = document.getElementById("signupEmail"); 
     const username = document.getElementById("signupUsername");
     const password = document.getElementById("signupPassword");
     const confirmPassword = document.getElementById("confirmPassword");
-    const emailError = document.getElementById("emailError");
-    const displayNameError = document.getElementById("displayNameError");
+    const emailError = document.getElementById("emailError"); 
     const usernameError = document.getElementById("usernameError");
     const passwordError = document.getElementById("passwordError");
     const confirmPasswordError = document.getElementById("confirmPasswordError");
-    [emailError, displayNameError, usernameError, passwordError, confirmPasswordError].forEach(error => error.textContent = "");
+    [emailError, usernameError, passwordError, confirmPasswordError].forEach(error => error.textContent = "");
 
     let valid = true;
 
     if (!email.value.trim()) {
         emailError.textContent = "Email is required.";
-        valid = false;
-    }
-    if (!displayName.value.trim()) {
-        displayNameError.textContent = "Display name is required.";
         valid = false;
     }
     if (!username.value.trim()) {
@@ -64,18 +58,18 @@ async function handleSignup(event) {
         }
         const userCredential = await createUserWithEmailAndPassword(auth, email.value.trim(), password.value);
         const userId = userCredential.user.uid;
-        await storeUserProfile(userId, displayName.value.trim(), username.value.trim(), email.value.trim());
+        await storeUserProfile(userId, username.value.trim(), email.value.trim());
         console.log("User successfully registered.");
         closeSignupModal();
         await loginUser(email.value.trim(), password.value);
-        // redirect home
-        window.location.href = "/html/home.html";
+        // redirect to signup
+        window.location.href = "/html/setup-profile.html";
     } catch (error) {
         console.error("Error during signup:", error);
         emailError.textContent = "Signup failed. Please try again.";
     }
 }
-async function storeUserProfile(userId, displayName, username, email) {
+async function storeUserProfile(userId, username, email) {
     if (!username) {
         username = `user_${userId.substring(0, 5)}`; // Generate a default username
     }
@@ -87,9 +81,8 @@ async function storeUserProfile(userId, displayName, username, email) {
         ? userDoc.data().userPostID
         : await generateUserPostID();
     const batch = writeBatch(db);
-    batch.set(userRef, { displayName, username, email, userPostID }, { merge: true });
-    batch.set(usernameRef, { uid: userId, username });
-    batch.set(searchIndexRef, { name: displayName.toLowerCase(), type: "user", refId: userId });
+    batch.set(userRef, { username, email, userPostID }, { merge: true });
+    batch.set(usernameRef, { uid: userId, username }); 
     await batch.commit();
 }
 async function generateUserPostID() {

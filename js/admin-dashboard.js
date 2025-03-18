@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const editCommunityPicInput = document.getElementById("editCommunityPicInput");
     const editCommunityBannerInput = document.getElementById("editCommunityBannerInput");
 
-    if (editCommunityForm) {
+    if (editCommunityForm) { //I kept changing my mind about keeping ever js module in main, this is what I would do if I still wanted to do that.
         editCommunityForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             if (!currentCommunityId) return;
@@ -185,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const data = docSnap.data();
                 const subdomain = data.subdomain;
-
+                // because values can be nullish
                 if (editCommunityPicInput?.files.length > 0) {
                     const picUrl = await uploadCompressedImage(editCommunityPicInput.files[0], `community_pics/${subdomain}_profile.jpg`);
                     updatedData.communityPicUrl = picUrl;
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 await updateDoc(docRef, updatedData); 
                 showToast("Community updated successfully.", "success");
 
-                editCommunityForm.reset(); // Clears the form
+                editCommunityForm.reset(); 
                 document.getElementById("editCommunityFormContainer").classList.add("d-none");
                 document.getElementById("communityList").classList.remove("d-none");
 
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/** Function to display a Bootstrap toast */
+/* toast is for alerting!*/
 function showToast(message, type = "info") {
     const toastContainer = document.getElementById("toastContainer");
     const toast = document.createElement("div");

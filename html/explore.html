@@ -7,13 +7,14 @@
     <title>Explore </title>
     <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
     <script type="module" src="/js/main.js" defer></script> 
+    <script type="module" src="/js/explore.js" defer></script> 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
+    <nav class="navbar fixed-top navbar-expand-lg px-3 border-bottom border-secondary d-flex">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
-            <img src="/images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
-            <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
+            <img src="../images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
+            <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
                 style="text-decoration:none">
                 <g style="fill: white">
                     <!-- r -->
@@ -37,37 +38,33 @@
                     <!-- t -->
                     <path d="M498,45h22v25h-25v76h-30v-76h-22v-25h22v-28h30v28Z"></path>
                 </g>
-            </svg>
+            </svg> </span>
         </a>
         <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
             <div class="input-group">
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>
                 </span>
-                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
-                    placeholder="Search Users or Communities" aria-label="Search" id="searchInput">
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search" placeholder="Search Users or Communities" id="searchInput">
             </div>
             <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
         </form>
+
         <!-- Navbar dropdown -->
         <div class="dropdown ms-auto">
-            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                <img id="navPic" src="../images/default-picture.png" class="rounded-circle"
-                    style="height: 35px; width: 35px; object-fit: cover;">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu" data-bs-toggle="dropdown">
+                <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
             </button>
-            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary">
                 <li><a class="dropdown-item text-white" id="homeBtn"><i class="bi bi-house me-2"></i> Home</a></li>
-                <li><a class="dropdown-item text-white" href="/html/settings.html"><i
-                            class="bi bi-gear me-2"></i>Settings</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item text-danger" href="/index.html" id="logoutButton"><i
-                            class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View Profile</a></li>
+                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="container-fluid">
 
         <div class="row">
@@ -95,7 +92,7 @@
 
                         <!-- Sorting Dropdown -->
                         <div class="sorting-container">
-                            <label class="text-white" for="sortOptions">Sort by:</label>
+                            <label class="text-white">Sort by:</label>
                             <select id="sortOptions" class="custom-select">
                                 <option value="popularity" selected>Popularity</option>
                                 <option value="alphabetical">A-Z</option>

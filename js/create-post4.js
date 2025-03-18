@@ -1,3 +1,5 @@
+//don't grade me on this, I didn't write it. Was pulling my hair out trying to get it to work right but it was too much, so called in a friend. again, not my work.
+
 document.addEventListener("DOMContentLoaded", function () {
     let resizingImage = null;
     let startX, startY, startWidth, startHeight, aspectRatio, resizeType;

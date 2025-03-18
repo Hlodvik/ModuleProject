@@ -6,15 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Community</title>
     <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
-     <script type="module" src="/js/main.js" defer></script> 
+    <script type="module" src="/js/main.js" defer></script> 
+    <script type="module" src="/js/comcol.js" defer></script> 
 </head>
 
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
+    <nav class="navbar fixed-top navbar-expand-lg px-3 border-bottom border-secondary d-flex">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
             <img src="../images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
-            <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
+            <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
                 style="text-decoration:none">
                 <g style="fill: white">
                     <!-- r -->
@@ -45,53 +46,45 @@
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>
                 </span>
-                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search"
-                    placeholder="Search Users or Communities" aria-label="Search" id="searchInput">
+                <input class="form-control bg-dark text-white border-secondary rounded-end-pill py-2 px-3" type="search" placeholder="Search Users or Communities" id="searchInput">
             </div>
             <div id="searchResults" class="dropdown-menu bg-dark text-white"></div>
         </form>
 
         <!-- Navbar dropdown -->
         <div class="dropdown ms-auto">
-            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu"
-                data-bs-toggle="dropdown" aria-expanded="false">
+            <button class="btn btn-outline-light dropdown-toggle d-flex align-items-center" type="button" id="userMenu" data-bs-toggle="dropdown">
                 <img id="navPic" class="rounded-circle" style="height: 35px; width: 35px; object-fit: cover;">
             </button>
-            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary" aria-labelledby="userMenu">
+            <ul class="dropdown-menu dropdown-menu-end bg-dark border-secondary">
                 <li><a class="dropdown-item text-white" id="homeBtn"><i class="bi bi-house me-2"></i> Home</a></li>
-                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View
-                        Profile</a></li>
-                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a>
-                </li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>
-                        Logout</a></li>
+                <li><a class="dropdown-item text-white" id="profileBtn"><i class="bi bi-person me-2"></i> View Profile</a></li>
+                <li><a class="dropdown-item text-white" id="settingsBtn"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" id="logoutBtn"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
             </ul>
         </div>
     </nav>
+
     <div class="container-fluid">
         <div class="row">
-            <!-- Sidebar Wrapper -->
+            <!-- Sidebar -->
             <div class=" col-md-3 col-lg-2 vh-100">
                 <div class="sidebar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/html/home.html">
-                                <i class="bi bi-house-door me-2"></i> Home
-                            </a>
-                        </li>
+                            <a class="nav-link text-white" href="../html/home.html"><i class="bi bi-house-door me-2"></i> Home</a></li>
+                            <a class="nav-link text-white" href="../html/explore.html"><i class="bi bi-compass me-2"></i> Explore</a></li>
+
+                        <li class="mt-vh4"><hr class="border-top border-secondary my-2"></li> <!-- divider -->
+                        
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="/html/popular.html">
-                                <i class="bi bi-fire me-2"></i> Popular
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="/html/explore.html">
-                                <i class="bi bi-compass me-2"></i> Explore
-                            </a>
-                        </li>
+                            <span class="nav-link text-white"><i class="bi bi-people me-2"></i> Your Communities</span></li>
+                        <ul id="userCommunities" class="nav flex-column"></ul> <!-- dynamically load communities -->
+                        <li><hr class="border-top border-secondary my-2 mt-3"></li> <!-- divider -->
+                        <li class="nav-item mt-2">
+                            <a class="nav-link text-white" href="/html/admin-dashboard.html">
+                                <i class="bi bi-tools me-2"></i> Admin Dashboard </a></li>
                     </ul>
                 </div>
             </div>
@@ -100,9 +93,8 @@
             <main class="col-md-7 px-md-4">
                 <!-- Community Banner -->
                 <div class="position-relative">
-                    <img id="banner" class="w-100" style="height: 35vh; object-fit: cover; margin-top: 2rem;">
-                    <img id="communityPic" class="position-absolute z-50"
-                        style="bottom: -30px; left: 20px; height: 80px; width: 80px; border-radius: 50%; border: 3px solid white;">
+                    <img id="banner" class="w-100 c-ban">
+                    <img id="communityPic" class="position-absolute z-50 position-absolute start-20 rounded-circle border border-3 border-white">
                 </div>
 
                 <!-- Community Name -->
@@ -119,11 +111,9 @@
             <!-- Right-Side Menu -->
             <aside class="col-md-3" style="margin-top:3em;">
                 <div class="card bg-dark text-white border-secondary p-3">
-
                     <div class="d-flex justify-content-center gap-2 mt-3">
+                        <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#createPostModal">Create Post</button>
                         <button id="join" class="btn btn-sm custom-btn-orange">Join Community</button>
-                        <button class="btn btn-secondary" data-bs-toggle="modal"
-                            data-bs-target="#createPostModal">Create Post</button>
                     </div>
                     <hr>
                     <p id="bio" class="text-secondary"> </p>
@@ -143,44 +133,38 @@
     </div>
 
     <!-- Create Post Modal -->
-    <div class="modal fade" id="createPostModal" tabindex="-1" aria-labelledby="createPostModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="createPostModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content bg-dark text-white">
                 <div class="modal-header border-secondary">
                     <h5 class="modal-title" id="createPostModalLabel">Create Post</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
 
-                <!-- Ensure the form wraps everything properly -->
+                <!-- RICH TEXT THIS WAS HARD -->
                 <form id="postForm">
-                    <div class="modal-body">
-                        <!-- Post Title -->
-                        <input type="text" id="postTitle" class="form-control bg-secondary text-white mb-3"
-                            placeholder="Title" maxlength="300">
+                    <div class="modal-body"> 
+                        <!-- title -->
+                        <input type="text" id="postTitle" class="form-control bg-secondary text-white mb-3"placeholder="Title" maxlength="150"> 
 
-                        <!-- Toolbar for text editing -->
+                        <!-- toolbar  -->
                         <div class="d-flex gap-2 mt-2">
                             <button type="button" class="btn btn-outline-light btn-sm" id="boldBtn"><b>B</b></button>
                             <button type="button" class="btn btn-outline-light btn-sm" id="italicBtn"><i>I</i></button>
 
-                            <!-- Font Size Dropdown -->
+                            <!-- font size -->
                             <div class="dropdown">
                                 <button type="button" class="btn btn-outline-light btn-sm dropdown-toggle" id="fontSizeBtn" data-bs-toggle="dropdown">
                                     <i class="bi bi-type"></i>
                                 </button>
                                 <ul class="dropdown-menu" id="fontSizeDropdown">
-                                    <!-- Font sizes will be added dynamically -->
+                                    <!-- Font sizes added dynamically -->
                                 </ul>
                             </div>
-                            <button type="button" class="btn btn-outline-light btn-sm" id="addMediaBtn">
-                                <i class="bi bi-image"></i>
-                            </button>
+                            <button type="button" class="btn btn-outline-light btn-sm" id="addMediaBtn"><i class="bi bi-image"></i></button>
                         </div>
 
                         <!-- Post Body -->
-                        
                         <div id="postBody" class="form-control bg-secondary text-white p-2" contenteditable="true" style="min-height: 60vh; overflow-y: auto;">
                         </div>
                         <input type="hidden" id="hiddenPostBody" name="hiddenPostBody">
@@ -195,13 +179,12 @@
         </div>
     </div>
     <!-- Media Insert Modal -->
-    <div class="modal fade" id="mediaModal" tabindex="-1" aria-labelledby="mediaModalLabel" aria-hidden="true">
+    <div class="modal fade" id="mediaModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content bg-dark text-white">
                 <div class="modal-header">
                     <h5 class="modal-title" id="mediaModalLabel">Insert Media</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <input type="file" id="postMedia" class="form-control mb-2">

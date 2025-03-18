@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readit - Home</title>
-    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg"> 
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg"> 
 
-  <script type="module" crossorigin src="/assets/firebase-chunk.js"></script>
-  <script type="module" crossorigin src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"></script>
-  <script type="module" crossorigin src="/assets/main-chunk.js"></script>
-  <script type="module" crossorigin src="https://www.gstatic.com/firebasejs/10.10.0/firebase-firestore.js"></script>
+  <script type="module" crossorigin src="/assets/home.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/firebase-chunk.js">
+  <link rel="modulepreload" crossorigin href="/assets/main-chunk.js">
   <link rel="stylesheet" crossorigin href="/assets/main.css">
 </head>
 
@@ -45,7 +44,7 @@
                 </g>
             </svg>
         </a>
-        <form class="d-flex mx-auto search-bar w-100 justify-content-center" style="max-width: 500px;">
+        <form class="d-flex mx-auto search-bar  justify-content-center" style="max-width: 50%;">
             <div class="input-group">
                 <span class="input-group-text bg-dark border-secondary text-white rounded-start-pill">
                     <i class="bi bi-search"></i>

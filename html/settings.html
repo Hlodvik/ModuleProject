@@ -6,10 +6,13 @@
     <title>Settings</title> 
     <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg"> 
     <script type="module" src="/js/main.js" defer></script> 
+    <script type="module" src="/js/settings.js" defer></script>  
+    <script type="module" src="/js/edit-profile.js" defer></script>
+    <script type="module" src="/js/pic-upload.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark border-bottom border-secondary px-3 w-100">
+    <nav class="navbar fixed-top navbar-expand-lg px-3 border-bottom border-secondary d-flex">
         <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
             <img src="../images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
             <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
@@ -65,33 +68,26 @@
     <div class="container-fluid">
 
         <div class="row">
-            <div class="col-md-3 col-lg-2">
-
+            <div class="col-md-3 col-lg-2"> 
                 <div class="sidebar">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link text-white active" id="editProfileLink" data-bs-toggle="pill"
-                                href="#editProfile" role="tab" aria-controls="editProfile" aria-selected="true">
+                            <a class="nav-link text-white active" id="editProfileLink" data-bs-toggle="pill" href="#editProfile" role="tab">
                                 <i class="bi bi-person me-2"></i> Edit Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" id="securityPrivacyLink" data-bs-toggle="pill"
-                                href="#securityPrivacy" role="tab" aria-controls="securityPrivacy"
-                                aria-selected="false">
+                            <a class="nav-link text-white" id="securityPrivacyLink" data-bs-toggle="pill" href="#securityPrivacy" role="tab">
                                 <i class="bi bi-shield-lock me-2"></i> Security & Privacy
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" id="appearanceLink" data-bs-toggle="pill" href="#appearance"
-                                role="tab" aria-controls="appearance" aria-selected="false">
+                            <a class="nav-link text-white" id="appearanceLink" data-bs-toggle="pill" href="#appearance" role="tab">
                                 <i class="bi bi-palette me-2"></i> Appearance
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" id="updateEmailPasswordLink" data-bs-toggle="pill"
-                                href="#updateEmailPassword" role="tab" aria-controls="updateEmailPassword"
-                                aria-selected="false">
+                            <a class="nav-link text-white" id="updateEmailPasswordLink" data-bs-toggle="pill" href="#updateEmailPassword" role="tab">
                                 <i class="bi bi-envelope me-2"></i> Account Settings
                             </a>
                         </li>
@@ -117,47 +113,47 @@
                                         <div class="row">
                                             <!-- First Row -->
                                             <div class="col-md-6 mb-3">
-                                                <label for="username" class="form-label">Username</label>
+                                                <label class="form-label">Username</label>
                                                 <input type="text" class="form-control" id="username" placeholder="Enter your username">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="displayName" class="form-label">Display Name</label>
+                                                <label class="form-label">Display Name</label>
                                                 <input type="text" class="form-control" id="displayName" placeholder="Enter your display name">
                                             </div>
                             
                                             <!-- Second Row -->
                                             <div class="col-md-6 mb-3">
-                                                <label for="location" class="form-label">Location</label>
+                                                <label class="form-label">Location</label>
                                                 <input type="text" class="form-control" id="location" placeholder="Enter your city or neighborhood">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="pronouns" class="form-label">Pronouns</label>
+                                                <label class="form-label">Pronouns</label>
                                                 <input type="text" class="form-control" id="pronouns" placeholder="Enter your pronouns">
                                             </div>
                                         </div>
                             
                                         <!-- Bio -->
                                         <div class="mb-3">
-                                            <label for="bio" class="form-label">Bio</label>
+                                            <label class="form-label">Bio</label>
                                             <textarea class="form-control w-100" id="bio" rows="5" placeholder="Tell us a little about yourself"></textarea>
                                         </div>
                             
                                         <!-- Social Links -->
                                         <div class="row">
                                             <div class="col-md-6 mb-3">
-                                                <label for="linkedin" class="form-label">LinkedIn</label>
+                                                <label class="form-label">LinkedIn</label>
                                                 <input type="text" class="form-control" id="linkedin" placeholder="LinkedIn profile link">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="github" class="form-label">GitHub</label>
+                                                <label class="form-label">GitHub</label>
                                                 <input type="text" class="form-control" id="github" placeholder="GitHub profile link">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="instagram" class="form-label">Instagram</label>
+                                                <label class="form-label">Instagram</label>
                                                 <input type="text" class="form-control" id="instagram" placeholder="Instagram profile link">
                                             </div>
                                             <div class="col-md-6 mb-3">
-                                                <label for="twitter" class="form-label">X (formerly Twitter)</label>
+                                                <label class="form-label">X (formerly Twitter)</label>
                                                 <input type="text" class="form-control" id="twitter" placeholder="X profile link">
                                             </div>
                                         </div>
@@ -166,8 +162,8 @@
                                     <!-- Right Side (Profile Picture) -->
                                     <div class="col-md-4 text-center">
                                         <p class="text-white ">Profile Picture</p>
-                                        <label for="profileUpload" class="d-block">
-                                            <img id="profilePic" class="img-fluid" style="max-height: 30vh; max-width: 15vw; cursor: pointer;" alt="Profile Picture" src="">
+                                        <label class="d-block">
+                                            <img id="profilePic" class="img-fluid w-50 h-auto cursor-pointer"  src="">
                                         </label>
                                         <input type="file" accept="image/*" id="profileUpload" hidden>
                                         
@@ -175,12 +171,12 @@
                                 </div>
                             
                                 <!-- Bootstrap Modal for Image Preview -->
-                                <div class="modal fade" id="profilePreviewModal" tabindex="-1" aria-labelledby="profilePreviewLabel" aria-hidden="true">
+                                <div class="modal fade" id="profilePreviewModal" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title text-dark" id="profilePreviewLabel">Profile Picture Preview</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
                                             <div class="modal-body text-center">
                                                 <img id="profileModalPic" class="img-fluid rounded-circle" style="max-width: 200px;" alt="Profile Preview">
@@ -323,20 +319,17 @@
                                     <!-- update email -->
                                     <h4 class="text-white mt-4">Change Email</h4>
                                     <div class="mb-3">
-                                        <label for="newEmail" class="form-label text-white text-start">New Email</label>
-                                        <input type="email" class="form-control bg-dark text-white" id="newEmail"
-                                            placeholder="Enter your new email" disabled>
+                                        <label class="form-label text-white text-start">New Email</label>
+                                        <input type="email" class="form-control bg-dark text-white" id="newEmail" placeholder="Enter your new email" disabled>
                                     </div>
                                     <div class="mb-3">
-                                        <label for="confirmNewEmail" class="form-label text-white text-start">Confirm
+                                        <label class="form-label text-white text-start">Confirm
                                             New Email</label>
-                                        <input type="email" class="form-control bg-dark text-white" id="confirmNewEmail"
-                                            placeholder="Confirm your new email" disabled>
+                                        <input type="email" class="form-control bg-dark text-white" id="confirmNewEmail" placeholder="Confirm your new email" disabled>
                                     </div>
 
 
-                                    <button type="button" class="btn btn-secondary mt-2 text-start" id="updateEmailBtn"
-                                        disabled>Update Email
+                                    <button type="button" class="btn btn-secondary mt-2 text-start" id="updateEmailBtn" disabled>Update Email
                                     </button>
 
                                 </div>

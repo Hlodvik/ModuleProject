@@ -14,25 +14,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     const pathSegments = window.location.pathname.split("/");
     const communitySubdomain = pathSegments[2]; // format: /co/{subdomain}
 
-    // If not on a /co/ path, exit
+    // dont put errors in my console bc im on the home page thanks
     if (!window.location.pathname.startsWith("/co/")) {
         return;
     }
 
     try {
-        // get docs with subdomain
+        // get the row with subdomain query
         const q = query(collection(db, "communities"), where("subdomain", "==", communitySubdomain));
         const querySnapshot = await getDocs(q);
-
+        //just in case      
         if (querySnapshot.empty) {
             console.error("Community not found:", communitySubdomain);
             return;
         }
 
-        // Grab the first matching doc
-        const communityDoc = querySnapshot.docs[0];
-        const communityData = communityDoc.data(); // Extract fields
-        const communityDocId = communityDoc.id;    // The Firestore doc ID
+        
+        const communityDoc = querySnapshot.docs[0]; // get the match
+        const communityData = communityDoc.data(); // extract the fields
+        const communityId = communityDoc.id;    // keep the id handy
 
         // Fill in community details
         if (nameElem) nameElem.textContent = communityData.name;
@@ -42,26 +42,22 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (membersElem) loadMembers(membersElem, communityData.members);
 
         //  call fetchCommunityFeed with commID
-        fetchCommunityFeed(communityDocId);
+        fetchCommunityFeed(communityId);
 
     } catch (error) {
-        console.error("Error loading community:", error);
+        console.error("Error loading community", error);
     }
 
     function loadImages(profilePicUrl, bannerUrl) {
         if (picElem && profilePicUrl) {
             picElem.src = profilePicUrl;
             localStorage.setItem("communityProfilePic", profilePicUrl);
-        } else {
-            console.warn("No profile picture found. Skipping.");
-        }
+        }  
 
         if (bannerElem && bannerUrl) {
             bannerElem.src = bannerUrl;
             localStorage.setItem("communityBannerPic", bannerUrl);
-        } else {
-            console.warn("No banner found. Skipping.");
-        }
+        }  
     }
 
     async function loadAdmins(adminsElem, adminUIDs) {

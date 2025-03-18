@@ -13,8 +13,10 @@ export default defineConfig({
     outDir: "dist",
     emptyOutDir: true,
     rollupOptions: {
+      treeshake: false,
       input: {
         main: resolve(__dirname, "index.html"),
+        setupProfile: resolve(__dirname, "html/setup-profile.html"),
         home: resolve(__dirname, "html/home.html"),
         profile: resolve(__dirname, "html/profile.html"),
         settings: resolve(__dirname, "html/settings.html"),

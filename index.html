@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Readit</title>
-    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">   
-    <script type="module" src="/js/main.js" defer></script> 
+    <link rel="icon" type="image/svg+xml" href="/images/readiticon.svg">
+    <script type="module" src="/js/main.js" defer></script>
+    <script type="module" src="/js/sign-up.js" defer></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark px-3 border-bottom border-secondary w-100">
-        <a class="navbar-brand d-flex align-items-center" href="/html/home.html">
+    <nav class="navbar fixed-top navbar-expand-lg px-3 border-bottom border-secondary d-flex">
+        <a class="navbar-brand d-flex align-items-center" href="#">
             <img src="/images/readiticon.svg" class="me-2" style="height: 42px; width: auto;">
-            <svg class="h-[22px]" height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
+            <svg height="30" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 510 150"
                 style="text-decoration:none">
                 <g style="fill: white">
                     <!-- r -->
@@ -37,109 +38,100 @@
                     <!-- t -->
                     <path d="M498,45h22v25h-25v76h-30v-76h-22v-25h22v-28h30v28Z"></path>
                 </g>
-            </svg> </span>
+            </svg>  
         </a>
- 
-
-
-
+        <div class="ms-auto">
+            <button class="custom-btn-orange rounded-pill px-4 py-2" data-bs-toggle="modal"
+                data-bs-target="#loginModal">Log In</button>
+        </div>
     </nav>
 
-
-    <div class="container-fluid">
-        <div class="row">
-            <!-- Main Content -->
-            <main class="col-md-9 col-lg-10 px-md-4">
-                <div class="container mt-4 cn">
-                    <section class="hero-section text-white d-flex py-5">
-                        <div class="container hc">
-                            <h1 class="display-3 fw-bold">Welcome to Readit</h1>
-                            <p class="lead">The best place to discuss, explore, and share what matters to
-                                you.</p>
-                        </div>
-                        <div class="hero-buttons">
-                            <button class="btn btn-warning rounded-pill px-4 py-2 text-white"
-                                style="background-color: #ff4500; border: none;" data-bs-toggle="modal" data-bs-target="#loginModal">
-                                Log In
-                            </button>
-                            <button class="btn btn-warning rounded-pill px-4 py-2 text-white"
-                                style="background-color: #ff4500; border: none;" data-bs-toggle="modal" data-bs-target="#signupModal">
-                                Sign Up
-                            </button>
-                        </div>
-                    </section>
-                    <div class="container mt-4">
-                        <!-- feed Container -->
-                        <div class="feed-container" id="feed">
-                            <!-- posts will be inserted here via API or JS, whichever works better for the project -->
-                        </div>
-                    </div>
+    <!-- Main Content -->
+    <main class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-9 text-center">
+                <section class="hero-section text-white d-flex">
+                    <div class="container">
+                        <h1 class="display-3 fw-bold">Welcome to Readit</h1>
+                        <p class="lead">
+                            Welcome to Readit—a home for storytellers, book lovers, and aspiring authors to
+                            connect, learn, and grow together. Whether you're an established writer, a new author finding
+                            your voice, or just someone who loves discussing great stories,<br> 
+                            <strong>this is your space.</strong><br> 
+                            At Readit, <i>you choose your journey.</i> Join communities that match your interests—fiction,
+                            poetry, screenwriting, publishing, worldbuilding, and more. Share your latest work, get
+                            thoughtful feedback, exchange ideas, and connect with people who inspire you.
+                            From publishing insights to critique circles, writing prompts to literary discussions, Readit is
+                            built to help you hone your craft and find your people. The best recommendations, advice, and
+                            conversations are waiting for you. 
+                            Create your account today to join the conversations that matter most to you. Your next great
+                            idea, critique partner, or literary breakthrough could be just one community away.
+                        </p>
                 </div>
-            </main><span class="error-message" id="emailError"></span>
-            <span class="error-message" id="displayNameError"></span>
-            <span class="error-message" id="usernameError"></span>
-            <span class="error-message" id="passwordError"></span>
-            <span class="error-message" id="confirmPasswordError"></span>
+                <button class="btn btn-primary text-white" data-bs-toggle="modal" data-bs-target="#signupModal">
+                    Sign Up Here!
+                </button>
         </div>
-    </div>
-    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        </section>
+        <div class="container mt-4">
+        </div>
+        </div>
+    </main>
+    <div class="modal fade" id="signupModal" tabindex="-1">
         <div class="modal-dialog">
-            <div class="modal-content">
+            <div class="modal-content ">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="signupModalLabel">Create Your Account</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title text-dark" id="signupModalLabel">Create Your Account</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="signupForm">
                         <div class="mb-3">
-                            <label for="signupEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="signupEmail" required placeholder="Enter your email">
+                            <label class="form-label text-dark">Email Address</label>
+                            <input type="email" class="form-control fbg" id="signupEmail" required placeholder="Enter your email">
                             <span class="error-message" id="emailError"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="signupUsername" class="form-label">Username </label>
-                            <input type="text" class="form-control" id="signupUsername" required placeholder="Choose a unique username for your url">
+                            <label class="form-label text-dark">Username </label>
+                            <input type="text" class="form-control fbg" id="signupUsername" required
+                                placeholder="Choose a unique username for your url">
                             <span class="error-message" id="usernameError"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="signupDisplayName" class="form-label">Display Name</label>
-                            <input type="text" class="form-control" id="signupDisplayName" required placeholder="Enter your display name">
-                            <span class="error-message" id="displayNameError"></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="signupPassword" class="form-label">Password </label>
-                            <input type="password" class="form-control" id="signupPassword" required placeholder="Create a password" autocomplete="new-password">
+                            <label class="form-label text-dark">Password </label>
+                            <input type="password" class="form-control fbg" id="signupPassword" required
+                                placeholder="Create a password" autocomplete="new-password">
                             <span class="error-message" id="passwordError"></span>
                         </div>
                         <div class="mb-3">
-                            <label for="confirmPassword" class="form-label">Confirm Password <span class="required"></span></label>
-                            <input type="password" class="form-control" id="confirmPassword" required placeholder="Confirm your password" autocomplete="new-password">
+                            <label class="form-label text-dark">Confirm Password <span class="required"></span></label>
+                            <input type="password" class="form-control fbg" id="confirmPassword" required placeholder="Confirm your password" autocomplete="new-password">  <!-- Browser console yelled at me for not having autocomplete, crazy -->
                             <span class="error-message" id="confirmPasswordError"></span>
                         </div>
                         <button type="submit" class="btn w-100 custom-btn-orange" id="signupButton">Sign Up</button>
-                        </form>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal fade" id="loginModal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="loginModalLabel">Log In to Readit</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-header  d-flex justify-content-center w-100">
+                    <h3 class="modal-title text-dark text-center w-100" id="loginModalLabel">Log In to Readit</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
                     <form id="loginForm">
                         <div class="mb-3">
-                            <label for="loginEmail" class="form-label">Email Address</label>
-                            <input type="email" class="form-control" id="loginEmail" required
-                                placeholder="Enter your email">
+                            <label class="form-label  text-dark">Email Address</label>
+                            <input type="email" class="form-control fbg" id="loginEmail" required placeholder="Enter your email">
                         </div>
                         <div class="mb-3">
-                            <label for="loginPassword" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="loginPassword" required placeholder="Enter your password" autocomplete="current-password">
+                            <label class="form-label text-dark">Password</label>
+                            <input type="password" class="form-control fbg" id="loginPassword" required
+                                placeholder="Enter your password" autocomplete="current-password">
                         </div>
                         <small id="loginError" class="text-danger d-none">Invalid email or
                             password.</small>

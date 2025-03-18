@@ -6,8 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const insertMediaBtn = document.getElementById("insertMediaBtn");
     const mediaPreview = document.getElementById("mediaPreview");
     
-    if (!postBody || !addMediaBtn || !postMedia || !mediaModal || !insertMediaBtn || !mediaPreview) {
-        console.warn("One or more media modal elements are missing.");
+    if (!postBody || !addMediaBtn || !postMedia || !mediaModal || !insertMediaBtn || !mediaPreview) { 
         return;
     }
 
@@ -24,13 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
             const file = this.files[0];
             const reader = new FileReader();
             reader.onload = function (e) {
-                mediaPreview.innerHTML = `<img src="${e.target.result}" style="max-width: 100%; max-height: 200px;">`;
+                mediaPreview.innerHTML = `<img src="${e.target.result}" >`;
             };
             reader.readAsDataURL(file);
         }
     });
-
-    /** Insert Image into Post Body at Cursor Position */
+ 
     insertMediaBtn.addEventListener("click", function () {
         if (!postMedia.files.length) return;
         
@@ -53,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         mediaModal.style.display = "none";
     });
 
-    /** Function to Insert at Cursor Position */
+    /** insert media at cursor */
     function insertAtCursor(container, element) {
         const selection = window.getSelection();
         if (!selection.rangeCount) {

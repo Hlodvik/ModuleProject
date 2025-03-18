@@ -2,4 +2,13 @@ The Website:
     I really wanted to take the extra step to actually deploy this website, so I bought a 70 cent domain from ionos (readit.space) and learned to use firebase for deployment. 
     This website is clearly based off of Reddit, I started off by examining their source code. I couldn't find a font I liked so I took the svg section in reddit's navbar and edited the first d to look like an a. I also took the svg for their logo and put it in an editor, made it a little different, then saved it as a png. Still, wanted to say I got the code for the vectors directly from reddit and edited them. 
 
-    To use firebases storage I would have to pay money, which I didn't want to do. The first picture I uploaded to firestore was converted to base64, I'm not entirely sure why it didn't do that for the following images I wanted to upload, so I went to switch to use imgur's API. But after a day of testing, imgur was constantly telling me it was over capacity so I went to figure out how to compress the base64 strings so I could save them in firestore with out reaching my free read/write limits. I looked up javascript base64 compression and LZ-string was suggested so I went with that. 
+    learned about the optional chaining operator when I felt there was far too many if statements in the script.
+    source=https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Optional_chaining
+
+    I put a lot of work into writing the hero section message, and I think it does a fair job at explaining the 'purpose' of the website. 
+    As for gradable content:
+
+                                                                            Navigation Bar
+                                                    Add a navbar with at least 3 links (e.g., Home, About, Contact).
+
+using bootstrap classes made this easy breezey. 
