@@ -1,8 +1,7 @@
 import { auth, db } from "./auth.js";
 import { doc, setDoc } from "firebase/firestore";
 import gsap from "gsap"; 
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-
+import { ScrollToPlugin } from "gsap/ScrollToPlugin"; 
 gsap.registerPlugin(ScrollToPlugin);
 
 document.addEventListener("DOMContentLoaded", async () => {
